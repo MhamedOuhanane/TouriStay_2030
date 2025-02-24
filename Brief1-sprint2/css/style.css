@@ -1,0 +1,153 @@
+
+
+
+
+#Shadow{
+    min-height: 50vw;
+}
+
+.Todoliste-page{
+    background-color: #90CAF9;
+    width: 100%;
+    min-height: 50vw;
+}
+
+.search-input{
+    outline: none;
+}
+
+.partie-aside{
+    background-color: #1E88E5;
+}
+
+
+.form-card{
+    width: 40%;
+    background-color: #90CAF9;
+}
+
+.form-card input,
+select{
+    height: 3rem;
+}
+
+
+.divesion-card{
+    min-height: 30vh;
+    width: 23vw;
+    background-color: #E3F2FD;
+}
+
+#To-Do{
+    max-height: 100vh;
+}
+
+#Doing{
+    max-height: 100vh;
+}
+
+#Done{
+    max-height: 100vh;
+}
+
+.div-tasks::-webkit-scrollbar {
+    display: none;
+}
+
+.footer{
+    background-color: #0D47A1;
+}
+
+.task{
+    background-color: white;
+    width: 100%;
+    height: auto;
+    max-height: 12vw;
+    margin: 10px 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(4,1fr)
+}
+
+.task-title{
+    font-weight: bold;
+    height: 2vw;
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    overflow-x: auto;
+}
+
+.task-time{
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
+}
+
+.task-date{
+    grid-column: 4 / 6;
+    grid-row: 1 / 2;
+}
+
+.task-descr{
+    grid-column: 1 / 6;
+    grid-row: 2 / 4;
+    height: 100%;
+    overflow-y: auto;
+    
+}
+
+.task-title::-webkit-scrollbar,
+.task-descr::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+.task-delete{
+    grid-row: 4 / 5;
+    grid-column: 1 / 3;
+    width: 90%;
+    height: 100%;
+    background-color: rgb(255, 167, 167);
+    border: 0;
+    border-radius: 2px;
+
+}
+
+.task-done{
+    grid-row: 4 / 5;
+    grid-column: 3 / 5;
+    border-radius: 2px;
+    background-color: gray;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.task-modifier{
+    height: 100%;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    grid-row: 4 / 5;
+    grid-column: 5 / 6;
+}
+
+/* .done-input:checked ~ .task-done{
+    background-color: green;
+
+} */
+
+
+
+
+
+
+
