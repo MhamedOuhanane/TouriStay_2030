@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Annonce;
+use App\Models\Touriste;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Action;
 use Illuminate\Support\Facades\Auth;
@@ -142,5 +143,13 @@ class AnnonceController extends Controller
         $annonce->save();
 
         return redirect()->route('owner.dashboard');
+    }
+
+    public function favoris(Request $request)
+    {
+        $Annonce = Annonce::find($request->id);
+
+        $Annonce->touriste()->attach(Auth::id());
+        return redirect()->route('annonces.index');
     }
 }
