@@ -18,7 +18,7 @@
                 @csrf
                 @method('patch')
 
-                <input type="hidden" id="property_id" name="property_id">
+                <input type="hidden" id="id" name="id" value="{{ $Annonce->id }}">
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
                     <div>
@@ -62,7 +62,7 @@
                 <div class="mb-6">
                     <label for="photo" class="block text-sm font-medium text-gray-700 mb-1">Property Photos</label>
                     <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                        <input type="file" id="photo" name="photo" accept="image/*" class="hidden">
+                        <input type="file" id="photo" name="photo" accept="image/*" class="hidden" {{ old('photo',$Annonce->photo) }}>
                         <label for="photo" class="cursor-pointer block">
                             <i class="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
                             <span class="text-sm text-gray-500">Click to upload or drag and drop</span>

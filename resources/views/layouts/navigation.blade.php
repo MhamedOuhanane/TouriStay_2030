@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false, roles: @json(Auth::user()->roles) }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -80,6 +80,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                <template x-for="role in roles" :key="role.id">
+                    <div x-text="role.name"></div>
+                </template>
                 <x-responsive-nav-link :href="route('owner.profile')">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
