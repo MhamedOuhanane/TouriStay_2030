@@ -57,7 +57,7 @@
 
             <div>
                 <x-input-label for="phone" :value="__('Phone')" />
-                <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $owner->formatPhone())" autocomplete="phone" />
+                <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $owner->phone)" autocomplete="phone" />
                 <x-input-error class="mt-2" :messages="$errors->get('phone')" />
             </div>
 
@@ -68,12 +68,12 @@
             </div>
 
             <div>
-                <x-input-label for="country" :value="__('Country')" />
-                <select id="country" name="country" class="border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-md shadow-sm mt-1 block w-full">
-                    <option value="morocco" {{ old('country',$owner->country) == 'morocco' ? 'selected' : '' }}>Morocco</option>
-                    <option value="spain" {{ old('country',$owner->country) == 'spain' ? 'selected' : '' }}>Spain</option>
-                    <option value="portugal" {{ old('country',$owner->country) == 'portugal' ? 'selected' : '' }}>Portugal</option>
-                    <option value="other" {{ old('country',$owner->country) == 'other' ? 'selected' : '' }}>Other</option>
+                <x-input-label for="Country" :value="__('Country')" />
+                <select id="Country" name="Country" class="border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-md shadow-sm mt-1 block w-full">
+                    <option value="Morocco" {{ old('Country',$owner->Country) == 'Morocco' ? 'selected' : '' }}>Morocco</option>
+                    <option value="Spain" {{ old('Country',$owner->Country) == 'Spain' ? 'selected' : '' }}>Spain</option>
+                    <option value="Portugal" {{ old('Country',$owner->Country) == 'Portugal' ? 'selected' : '' }}>Portugal</option>
+                    <option value="Other" {{ old('Country',$owner->Country) == 'Other' ? 'selected' : '' }}>Other</option>
                 </select>
             </div>
         </div> 

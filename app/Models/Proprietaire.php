@@ -17,16 +17,16 @@ class Proprietaire extends User
         return $this->hasMany(Annonce::class);
     }
 
-    public function formatPhone()
-    {
-        $formatPhone = '';
+    // public function formatPhone()
+    // {
+    //     $formatPhone = '';
 
-        if (strlen($this->phone) == 10) {
-            $formatPhone = +212 . substr($this->phone, 1, 1) . "xx-xxxxxx";
-        } elseif (strlen($this->phone) == 13) {
-            $formatPhone = +212 . substr($this->phone, 5,1) . "xx-xxxxxx";
-        }
+    //     if (strlen($this->phone) == 10) {
+    //         $formatPhone = +212 . substr($this->phone, 1, 1) . "xx-xxxxxx";
+    //     } elseif (strlen($this->phone) == 14) {
+    //         $formatPhone = +212 . substr($this->phone, 5,1) . "xx-xxxxxx";
+    //     }
         
-        return $formatPhone;
-    }
+    //     return $formatPhone;
+    // }
 }
