@@ -16,7 +16,6 @@
             
             <form method="post" action="{{ route('dashboard.store') }}" enctype="multipart/form-data" class="my-4 px-10 space-y-6">
                 @csrf
-                @method('path')
 
                 <input type="hidden" id="property_id" name="property_id">
                 
@@ -46,7 +45,7 @@
                         </select>
                         <x-input-error class="mt-2" :messages="$errors->get('Country')" />
                     </div>
-
+                    
                     <div>
                         <x-input-label for="prix" :value="__('Price (per night)')"/>       
                         <div class="relative">

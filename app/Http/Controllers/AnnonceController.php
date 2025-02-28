@@ -13,7 +13,7 @@ class AnnonceController extends Controller
      */
     public function index()
     {
-        //
+        return view('/');
     }
 
     /**
@@ -30,6 +30,7 @@ class AnnonceController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
             'Country' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
@@ -82,8 +83,13 @@ class AnnonceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Annonce $annonce)
+    public function destroy(Request $request)
     {
-        //
+        $annonce = Annonce::find($request->id);
+        
+        $annonce->soft_delete = !$annonce->soft_delete;
+        $annonce->save();
+
+        return redirect()->route('owner.dashboard');
     }
 }

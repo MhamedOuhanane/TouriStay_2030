@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Annonce extends Model
 {
     protected $fillable = [
+        'title',
         'location',
         'Country',
         'photo',
@@ -26,5 +28,10 @@ class Annonce extends Model
     public function proprietaire()
     {
         return $this->belongsTo(Proprietaire::class);
+    }
+
+    public function formatDate($date, $format)
+    {
+        return Carbon::parse($date)->format($format);
     }
 }

@@ -52,15 +52,21 @@ class RegisteredUserController extends Controller
         
         $user->save();
         
-        if (count($request->roleName) != 2) {
-            if ( $request->roleName[0] == 'touriste') {
-                $user1 = new Touriste();
-            } else {
-                $user1 = new Proprietaire();
-            }
-            
-            // $u = $user->replicate();
-            
+        if ( in_array('touriste', $request->roleName)) {
+            $user1 = new Touriste();
+
+            $user1->id = $user->id;
+            $user1->first_name = $user->first_name;    
+            $user1->last_name = $user->last_name;
+            $user1->email = $user->email;
+            $user1->photo = $user->photo;
+            $user1->password = $user->password;
+            $user1->save();
+        }
+
+        if (in_array('proprietaire', $request->roleName)) {
+            $user1 = new Proprietaire();
+
             $user1->id = $user->id;
             $user1->first_name = $user->first_name;    
             $user1->last_name = $user->last_name;
@@ -85,7 +91,7 @@ class RegisteredUserController extends Controller
         Auth::login($user);
         $role = Auth::user()->roles->first()->name;
         session(['role' => $role]);
-        
+
         return $this->redirectRole();
     }
 }

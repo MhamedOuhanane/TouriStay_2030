@@ -32,9 +32,8 @@ class AuthenticatedSessionController extends Controller
         
         
         $request->session()->regenerate();
-        
-        $role = Auth::user()->roles->first()->name;
-        session(['role' => $role]);
+        $role = Auth::user()->roles->first();
+        session(['role' => $role->name]);
 
         return $this->redirectRole();
     }

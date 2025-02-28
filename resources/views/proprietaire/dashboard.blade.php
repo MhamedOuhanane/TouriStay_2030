@@ -21,11 +21,7 @@
                     </a>
                 </div>
                 
-                {{-- <!-- Add/Edit Property Modal -->
-                <div id="propertyModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 hidden">
-                    @include('proprietaire.profile.partials.add-listing')
-                </div>
-                 --}}
+                
                 <!-- Properties Listing Table -->
                 <div class="p-6">
                     <div class="overflow-x-auto">
@@ -57,127 +53,58 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <!-- Property Row 1 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        1
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0 rounded-md overflow-hidden">
-                                                <img src="/api/placeholder/400/320" alt="Property image" class="h-10 w-10 object-cover">
+                                @foreach ($Annonces as $item)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $item->id }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="h-10 w-10 flex-shrink-0 rounded-md overflow-hidden">
+                                                    <img src="{{ asset('storage/'. $item->photo) }}" alt="Property image" class="h-10 w-10 object-cover">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900 truncate max-w-xs">{{ $item->title }}</div>
+                                                </div>
                                             </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 truncate max-w-xs">Beachfront Villa with amazing ocean views</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">{{ $item->location }}, {{ $item->country }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">${{ $item->prix }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">{{ $item->formatDate($item->start_date, 'F j') }} - {{ $item->formatDate($item->end_date, 'F j') }}, 2030</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Accepter
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <div class="flex space-x-2">
+                                                <form action="{{ route('annonce.edit') }}" method="get">
+                                                    @csrf
+                                                    <input type="text" name="idSoftDelete" value="{{ $item->id }}" class="hidden">
+                                                    <button type="submit" class="edit-btn text-blue-600 hover:text-blue-900">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </form>
+
+                                                <form action="{{ route('annonce.SoftDelete') }}" method="POST">
+                                                    @csrf   
+                                                    @method('delete')
+                                                    <input type="text" name="id" value="{{ $item->id }}" class="hidden">
+                                                    <button type="submit" class="soft-delete-btn text-red-600 hover:text-red-900">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Tangier, Morocco</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">$120.00</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 1 - Aug 30, 2030</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Accepter
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="edit-btn text-blue-600 hover:text-blue-900" data-id="1">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="soft-delete-btn text-red-600 hover:text-red-900" data-id="1">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Property Row 2 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        2
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0 rounded-md overflow-hidden">
-                                                <img src="/api/placeholder/400/320" alt="Property image" class="h-10 w-10 object-cover">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 truncate max-w-xs">City Center Apartment near stadium</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Madrid, Spain</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">$95.50</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Jun 15 - Sep 15, 2030</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            En Attente
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="edit-btn text-blue-600 hover:text-blue-900" data-id="2">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="soft-delete-btn text-red-600 hover:text-red-900" data-id="2">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Property Row 3 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        3
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="h-10 w-10 flex-shrink-0 rounded-md overflow-hidden">
-                                                <img src="/api/placeholder/400/320" alt="Property image" class="h-10 w-10 object-cover">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900 truncate max-w-xs">Mountain Retreat with panoramic views</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Porto, Portugal</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">$135.00</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Jul 1 - Oct 30, 2030</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                            Refuser
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="edit-btn text-blue-600 hover:text-blue-900" data-id="3">
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button class="soft-delete-btn text-red-600 hover:text-red-900" data-id="3">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                        
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
