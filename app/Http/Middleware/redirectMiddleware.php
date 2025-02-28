@@ -20,7 +20,6 @@ class redirectMiddleware
             return redirect()->route('login');
         }
 
-        dd(session('role'), $role);
         switch ($role) {
             case session('role'):
                 return $next($request);
