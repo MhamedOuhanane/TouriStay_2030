@@ -7,6 +7,7 @@ use App\Models\Proprietaire;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ProprietaireController extends Controller
 {
@@ -62,7 +63,15 @@ class ProprietaireController extends Controller
      */
     public function update(Request $request, Proprietaire $proprietaire)
     {
-        //
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
     /**
