@@ -16,8 +16,14 @@ class ProprietaireController extends Controller
      */
     public function index()
     {
+        $colour = [
+            'En Attente' => "bg-yellow-100 text-yellow-800", 
+            'Accepter' => "bg-green-100 text-green-800", 
+            'Refuser' => "bg-red-100 text-red-800"
+        ];
+
         $Annonces = Annonce::where('proprietaire_id', Auth::id())->get();
-        return view('proprietaire.dashboard', compact('Annonces'));
+        return view('proprietaire.dashboard', compact('Annonces', 'colour'));
     }
 
     /**

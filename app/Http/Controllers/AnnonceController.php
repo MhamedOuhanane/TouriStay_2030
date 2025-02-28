@@ -67,9 +67,10 @@ class AnnonceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Annonce $annonce)
+    public function edit(Request $request)
     {
-        //
+        $Annonce = Annonce::find($request->id);
+        return view('proprietaire.profile.editListing', compact('Annonce'));
     }
 
     /**
@@ -77,7 +78,30 @@ class AnnonceController extends Controller
      */
     public function update(Request $request, Annonce $annonce)
     {
-        //
+        $validation = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string', 'max:255'],
+            'Country' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+            'prix' => ['required', 'numeric', 'min:0', 'max:10000'],
+            'start_date' => ['required', 'date', 'before_or_equal:end_date'], 
+            'end_date' => ['required', 'date', 'after_or_equal:start_date'], 
+        ]);
+
+        $annonce->fill($validation);
+
+        if ($annonce->photo != $request->photo) {
+            if ($request->hasFile('photo')) {
+            
+                $photoPath = $request->file('photo')->store('photos', 'public');
+                $annonce->photo = $photoPath;
+            } else {
+                $annonce->photo =  'photos/annonceDefoult.png';
+            }
+        }
+
+        $annonce->save();        
+        return redirect()->route('owner.dashboard');
     }
 
     /**

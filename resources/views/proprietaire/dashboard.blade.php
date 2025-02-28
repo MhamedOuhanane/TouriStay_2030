@@ -78,15 +78,15 @@
                                             <div class="text-sm text-gray-900">{{ $item->formatDate($item->start_date, 'F j') }} - {{ $item->formatDate($item->end_date, 'F j') }}, 2030</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Accepter
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $colour[$item->status] }}">
+                                                {{ $item->status }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <div class="flex space-x-2">
                                                 <form action="{{ route('annonce.edit') }}" method="get">
                                                     @csrf
-                                                    <input type="text" name="idSoftDelete" value="{{ $item->id }}" class="hidden">
+                                                    <input type="text" name="id" value="{{ $item->id }}" class="hidden">
                                                     <button type="submit" class="edit-btn text-blue-600 hover:text-blue-900">
                                                         <i class="fas fa-edit"></i>
                                                     </button>

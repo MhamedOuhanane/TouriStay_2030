@@ -24,6 +24,7 @@ Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(f
     Route::post('/dashboard', [AnnonceController::class, 'store'])->name('dashboard.store');
     Route::delete('/dashboard', [AnnonceController::class, 'destroy'])->name('annonce.SoftDelete');
     Route::get('/Annonces.edit', [AnnonceController::class, 'edit'])->name('annonce.edit');
+    Route::patch('/Annonces.update', [AnnonceController::class, 'update'])->name('annonce.update');
     Route::get('/Annonces', [AnnonceController::class, 'create'])->name('annonce.create');
     Route::get('/profile', [ProprietaireController::class, 'edit'])->name('owner.profile');
     Route::patch('/profile', [ProprietaireController::class, 'update'])->name('owner.profile.update');
