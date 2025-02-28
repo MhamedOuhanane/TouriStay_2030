@@ -14,21 +14,22 @@
                 </button>
             </div>
             
-            <form method="post" action="{{ route('dashboard.store') }}" enctype="multipart/form-data" class="my-4 px-10 space-y-6">
+            <form method="post" action="{{ route('annonce.update') }}" enctype="multipart/form-data" class="my-4 px-10 space-y-6">
                 @csrf
+                @method('patch')
 
                 <input type="hidden" id="property_id" name="property_id">
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
                     <div>
                         <x-input-label for="title" :value="__('Title')" />
-                        <x-text-input type="text" id="title" name="title" class="mt-1 block w-full" required autocomplete="title" placeholder="Enter title"/>
+                        <x-text-input type="text" id="title" name="title" class="mt-1 block w-full" :value="old('title', $Annonce->title)" required autocomplete="title" placeholder="Enter title"/>
                         <x-input-error class="mt-2" :messages="$errors->get('title')" />
                     </div>
 
                     <div>
                         <x-input-label for="location" :value="__('City')" />
-                        <x-text-input type="text" id="location" name="location" class="mt-1 block w-full" required autocomplete="location" placeholder="Enter city name"/>
+                        <x-text-input type="text" id="location" name="location" class="mt-1 block w-full" :value="old('location', $Annonce->location)" required autocomplete="location" placeholder="Enter city name"/>
                         <x-input-error class="mt-2" :messages="$errors->get('location')" />
                     </div>
                     
@@ -39,9 +40,9 @@
                         <x-input-label for="country" :value="__('Country')" />
                         <select id="country" name="Country" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200">
                             <option value="" disabled selected>Select a country</option>
-                            <option value="Morocco">Morocco</option>
-                            <option value="Portugal">Portugal</option>
-                            <option value="Spain">Spain</option>
+                            <option value="Morocco" {{ old('Country',$Annonce->Country) == 'Morocco' ? 'selected' : '' }}>Morocco</option>
+                            <option value="Spain" {{ old('Country',$Annonce->Country) == 'Spain' ? 'selected' : '' }}>Spain</option>
+                            <option value="Portugal" {{ old('Country',$Annonce->Country) == 'Portugal' ? 'selected' : '' }}>Portugal</option>
                         </select>
                         <x-input-error class="mt-2" :messages="$errors->get('Country')" />
                     </div>
@@ -52,7 +53,7 @@
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <span class="text-gray-500">$</span>
                             </div>
-                            <x-text-input type="number" id="prix" name="prix" step="0.01" min="0" class="pl-6 mt-1 block w-full" required autocomplete="prix" placeholder="0.00"/>
+                            <x-text-input type="number" id="prix" name="prix" step="0.01" min="0" class="pl-6 mt-1 block w-full" :value="old('prix', $Annonce->prix)" required autocomplete="prix" placeholder="0.00"/>
                             <x-input-error class="mt-2" :messages="$errors->get('prix')" />
                         </div>
                     </div>
@@ -74,25 +75,25 @@
                 
                 <div class="mb-6">
                     <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                    <textarea id="description" name="description" rows="2" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200" placeholder="Describe your property..."></textarea>
+                    <textarea id="description" name="description" rows="2" required class="w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200" placeholder="Describe your property...">{{ old('description', $Annonce->description) }}</textarea>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
                         <x-input-label for="start_date" :value="__('Start Date')" />            
-                        <x-text-input type="date" id="start_date" name="start_date" class="mt-1 block w-full" required autocomplete="start_date" />
+                        <x-text-input type="date" id="start_date" name="start_date" class="mt-1 block w-full" :value="old('start_date', $Annonce->start_date)" required autocomplete="start_date" />
                         <x-input-error class="mt-2" :messages="$errors->get('start_date')" />
                     </div>
                     
                     <div>
                         <x-input-label for="end_date" :value="__('End Date')" />            
-                        <x-text-input type="date" id="end_date" name="end_date" class="mt-1 block w-full" required autocomplete="end_date" />
+                        <x-text-input type="date" id="end_date" name="end_date" class="mt-1 block w-full" :value="old('end_date', $Annonce->end_date)" required autocomplete="end_date" />
                         <x-input-error class="mt-2" :messages="$errors->get('end_date')" />
                     </div>
                 </div>
                 
                 <div class="flex justify-end pt-4 border-t border-gray-200">
-                    <a href="{{ route('dashboard.store') }}" id="cancelBtn" class="bg-white text-gray-700 font-medium py-2 px-4 border border-gray-300 rounded-lg mr-2 hover:bg-gray-50 focus:ring focus:ring-gray-200 transition">
+                    <a href="{{ route('owner.dashboard') }}" id="cancelBtn" class="bg-white text-gray-700 font-medium py-2 px-4 border border-gray-300 rounded-lg mr-2 hover:bg-gray-50 focus:ring focus:ring-gray-200 transition">
                         Cancel
                     </a>
                     <x-primary-button class="bg-blue-500">{{ __('Save Property') }}</x-primary-button>
