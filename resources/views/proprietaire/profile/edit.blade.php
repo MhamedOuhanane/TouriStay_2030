@@ -36,11 +36,14 @@
                 <div class="bg-green-500 h-40 relative">
                     <div class="absolute -bottom-16 left-8">
                         <div class="h-32 w-32 rounded-full border-4 border-white overflow-hidden bg-white">
-                            <img src="{{ asset('storage/'. $owner->photo) }}" alt="Profile photo" class="w-full h-full object-cover">
-
-                            <x-text-input id='updatPhoto' name='photo' class="hidden" />
+                            <img id="profilePhotoPreview" src="{{ asset('storage/'. $owner->photo) }}" alt="Profile photo" class="w-full h-full object-cover">
+                            <label for="updatPhoto" class="absolute h-8 w-8 bottom-3 right-3 bg-green-400 text-center py-[0.2rem] rounded-full cursor-pointer" >
+                                <i class="fas fa-camera text-gray-50 text-lg"></i>
+                              </label>
+                            <x-text-input id='updatPhoto' accept="image/*" type="file" name='photo' class="hidden" />
                         </div>
-                    </div>
+                    </div> 
+                    
                     
                     {{-- <div class="absolute top-4 right-4">
                         <button class="bg-white hover:bg-gray-100 text-green-600 font-medium py-2 px-4 rounded-lg shadow transition">
