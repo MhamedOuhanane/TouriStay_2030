@@ -8,6 +8,7 @@ class Annonce extends Model
 {
     protected $fillable = [
         'location',
+        'Country',
         'photo',
         'description',
         'prix',

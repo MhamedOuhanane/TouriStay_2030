@@ -13,4 +13,4 @@
             {{ $slot }}
         @include('touriste.partials.footer');
     </body>
-</html>    
+</html> 

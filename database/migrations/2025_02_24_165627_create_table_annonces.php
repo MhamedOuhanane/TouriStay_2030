@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('annonces', function (Blueprint $table) {
             $table->id();
             $table->string('location');
+            $table->string('Country');
             $table->text('photo');
             $table->text('description');
             $table->decimal('prix', 6,2);
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('status', ['En Attente', 'Accepter', 'Refuser']);
+            $table->enum('status', ['En Attente', 'Accepter', 'Refuser'])->default('En Attente');
+            $table->boolean('soft_delete')->default(false);
             $table->unsignedBigInteger('proprietaire_id');
             $table->foreign('proprietaire_id')->references('id')->on('proprietaires')->onDelete('cascade');
             $table->timestamps();

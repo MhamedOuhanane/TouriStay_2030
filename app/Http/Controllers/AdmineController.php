@@ -12,7 +12,7 @@ class AdmineController extends Controller
      */
     public function index()
     {
-        return view('admin.dashbord');
+        return view('admin.dashboard');
     }
 
     /**

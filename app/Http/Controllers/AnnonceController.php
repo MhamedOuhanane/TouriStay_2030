@@ -21,7 +21,7 @@ class AnnonceController extends Controller
      */
     public function create()
     {
-        //
+        return view('proprietaire.profile.createListing');
     }
 
     /**
@@ -31,18 +31,17 @@ class AnnonceController extends Controller
     {
         $validation = $request->validate([
             'location' => ['required', 'string', 'max:255'],
-            'photo' => ['required'],
+            'Country' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:255'],
             'prix' => ['required', 'numeric', 'min:0', 'max:10000'],
             'start_date' => ['required', 'date', 'before_or_equal:end_date'], 
             'end_date' => ['required', 'date', 'after_or_equal:start_date'], 
         ]);
 
+
         $listing = new Annonce();
         $listing->fill($validation);
-        $listing->proprietaire_id = Auth::id(); 
-        $listing->status = 'En Attente'; 
-        $listing->soft_delete = false; 
+        $listing->proprietaire_id = Auth::id();  
 
         if ($request->hasFile('photo')) {
             
@@ -53,7 +52,7 @@ class AnnonceController extends Controller
         }
 
         $listing->save();
-        return redirect()->route('owner.dashbord');
+        return redirect()->route('owner.dashboard');
     }
 
     /**
