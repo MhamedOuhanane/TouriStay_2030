@@ -16,7 +16,8 @@ class ProprietaireController extends Controller
      */
     public function index()
     {
-        return view('proprietaire.dashboard');
+        $Annonces = Annonce::where('proprietaire_id', Auth::id())->get();
+        return view('proprietaire.dashboard', compact('Annonces'));
     }
 
     /**

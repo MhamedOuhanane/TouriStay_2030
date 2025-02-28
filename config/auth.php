@@ -84,17 +84,17 @@ return [
 
         'touristes' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Touriste::class),
+            'model' => App\Models\Touriste::class,
         ],
 
         'admines' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Admine::class),
+            'model' => App\Models\Admine::class,
         ],
 
         'owners' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Proprietaire::class),
+            'model' => App\Models\Proprietaire::class,
         ],
 
         // 'users' => [

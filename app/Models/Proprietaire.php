@@ -17,6 +17,8 @@ class Proprietaire extends User
         return $this->hasMany(Annonce::class);
     }
 
+    protected $guard = 'owner';
+
     // public function formatPhone()
     // {
     //     $formatPhone = '';

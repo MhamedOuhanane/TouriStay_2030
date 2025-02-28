@@ -22,6 +22,8 @@ Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {
     Route::get('/dashboard', [ProprietaireController::class, 'index'])->name('owner.dashboard');
     Route::post('/dashboard', [AnnonceController::class, 'store'])->name('dashboard.store');
+    Route::delete('/dashboard', [AnnonceController::class, 'destroy'])->name('annonce.SoftDelete');
+    Route::get('/Annonces.edit', [AnnonceController::class, 'edit'])->name('annonce.edit');
     Route::get('/Annonces', [AnnonceController::class, 'create'])->name('annonce.create');
     Route::get('/profile', [ProprietaireController::class, 'edit'])->name('owner.profile');
     Route::patch('/profile', [ProprietaireController::class, 'update'])->name('owner.profile.update');
