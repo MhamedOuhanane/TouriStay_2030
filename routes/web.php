@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonces.index');
+    Route::post('/annonces', [AnnonceController::class, 'filtrage'])->name('Annonce.filtrage');
     Route::get('/profile.touriste', [TouristeController::class, 'index'])->name('touriste.profile');
 });
 

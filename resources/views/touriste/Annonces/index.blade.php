@@ -1,54 +1,56 @@
 <x-master-layout>
     <section class="pt-20 bg-green-50">
-        <div class="container mx-auto px-4 pt-10">
+        <form id="formulaireAnnonce" action="{{ route('Annonce.filtrage') }}" method="POST" class="container mx-auto px-4 pt-10">
+            @csrf
             <div class="flex flex-col items-center text-center mb-8">
                 <h1 class="text-3xl md:text-4xl font-bold text-green-600 mb-4">Explorez les hébergements pour le Mondial 2030</h1>
                 <p class="text-gray-600 max-w-3xl">Trouvez le logement idéal à proximité des stades au Maroc, en Espagne et au Portugal</p>
             </div>
             
             <!-- Barre de recherche simple -->
-            <div class="bg-white rounded-xl shadow-md p-4 max-w-3xl mx-auto">
+            <div class="bg-white rounded-xl shadow-md p-4 max-w-3xl mx-auto mb-5">
                 <div class="relative">
-                <input 
-                    type="text" 
-                    placeholder="Rechercher une destination..." 
-                    class="w-full p-3 pl-10 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                >
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </div>
-                <button class="absolute inset-y-0 right-0 flex items-center px-4 text-white bg-green-500 rounded-r-lg hover:bg-green-600 transition-colors">
-                    Rechercher
-                </button>
+                    <input 
+                        type="text" 
+                        name="search"
+                        placeholder="Rechercher une destination..." 
+                        class="w-full p-3 pl-10 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    >
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <button type="submit" class="absolute inset-y-0 right-0 flex items-center px-4 text-white bg-green-500 rounded-r-lg hover:bg-green-600 transition-colors">
+                        Rechercher
+                    </button>
                 </div>
             </div> 
             <!-- Results Stats -->
             <div class="flex flex-col md:flex-row justify-between items-center mb-6">
                 <div class="mb-4 md:mb-0">
-                    <h2 class="text-lg font-semibold text-gray-800">804 hébergements trouvés</h2>
+                    <h2 class="text-lg font-semibold text-gray-800">{{ count($Annonces) }} hébergements trouvés</h2>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <label class="text-gray-700">Trier par:</label>
-                    <select class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none">
+                    {{-- <label class="text-gray-700">Trier par:</label>
+                    <select name="trier" class="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none">
                         <option>Recommandés</option>
                         <option>Prix (croissant)</option>
                         <option>Prix (décroissant)</option>
                         <option>Mieux notés</option>
                         <option>Distance du stade</option>
-                    </select>
-                    <div class="flex space-x-2">
-                        <button class="p-2 rounded-lg border border-gray-300 bg-white hover:bg-gray-50">
-                            <i class="fas fa-th-large text-green-600"></i>
-                        </button>
-                        <button class="p-2 rounded-lg border border-gray-300 bg-white hover:bg-gray-50">
-                            <i class="fas fa-list text-gray-500"></i>
-                        </button>
+                    </select> --}}
+                    <div  class="flex space-x-2">
+                        <select name="pagination" id="Selectpagination"
+                            class="w-14 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none">
+                            <option value="4">4</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                        </select>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </section>
 
     <!-- Listings Section -->
@@ -90,31 +92,7 @@
             
             <!-- Pagination -->
             <div class="flex justify-center mt-10">
-                <nav class="inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                        <span class="sr-only">Previous</span>
-                        <i class="fas fa-chevron-left"></i>
-                    </a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-green-500 text-sm font-medium text-white hover:bg-green-600">
-                        1
-                    </a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                        2
-                    </a>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                        3
-                    </a>
-                    <span class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700">
-                        ...
-                    </span>
-                    <a href="#" class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-                        8
-                    </a>
-                    <a href="#" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
-                        <span class="sr-only">Next</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                </nav>
+                {{ $Annonces->Links() }}
             </div>
         </div>
     </section>

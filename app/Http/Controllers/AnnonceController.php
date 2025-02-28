@@ -14,8 +14,28 @@ class AnnonceController extends Controller
      */
     public function index()
     {
-        $Annonces = Annonce::where('status', 'Accepter')->get();
+        $Annonces = Annonce::where('status', 'Accepter')->paginate(4);
         return view('touriste.Annonces.index', compact('Annonces'));
+    }
+
+    public function filtrage(Request $request)
+    {
+
+        $Annonces = Annonce::query();
+        
+        $searchTerm = $request->search; 
+        $paginateTerm = is_numeric($request->pagination) ? (int) $request->pagination : 4;
+
+        if ($searchTerm) {
+            $Annonces = $Annonces->where(function ($query) use ($searchTerm) {
+                $query->where('title', 'ILIKE', "%{$searchTerm}%")
+                      ->orWhere('location', 'ILIKE', "%{$searchTerm}%");
+            });
+        }
+
+        $Annonces = $Annonces->paginate($paginateTerm); 
+        // return view('client.temoignages.index', compact('temoignages', 'searchTerm', 'paginateTerm','trieTerm'));
+        return redirect()->route('annonces.index')->with(['Annonces' => $Annonces, 'searchTerm'=>$searchTerm, 'paginateTerm' => $paginateTerm]);
     }
 
     /**
