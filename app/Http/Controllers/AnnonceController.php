@@ -14,7 +14,8 @@ class AnnonceController extends Controller
      */
     public function index()
     {
-        return view('touriste.Annonces.index');
+        $Annonces = Annonce::where('status', 'Accepter')->get();
+        return view('touriste.Annonces.index', compact('Annonces'));
     }
 
     /**

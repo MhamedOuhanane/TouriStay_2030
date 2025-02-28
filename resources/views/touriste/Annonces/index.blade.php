@@ -56,259 +56,36 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 <!-- Listing 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Appartement à Casablanca" class="w-full h-48 object-cover">
-                        <div class="absolute top-0 left-0 bg-green-500 text-white px-3 py-1 m-3 rounded-lg text-sm font-medium">
-                            Populaire
+                @foreach ($Annonces as $annonce)
+                    <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                        <div class="relative">
+                            <img src="{{ asset('storage/' . $annonce->photo) }}" alt="Appartement à Casablanca" class="w-full h-48 object-cover">
+                            <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
+                                <i class="far fa-heart text-red-500"></i>
+                            </button>
                         </div>
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Appartement • Casablanca</span>
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.8</span>
+                        <div class="p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="font-medium text-gray-700">{{ $annonce->location }} • {{ $annonce->Country }}</span>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                    <span>4.8</span>
+                                </div>
+                            </div>
+                            <h3 class="font-bold mb-2 text-lg">{{ $annonce->title }}</h3>
+                            <p class="text-gray-600 text-sm mb-3">{{ $annonce->description }}</p>
+                            {{-- <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">2 chambres</span>
+                                <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">4 personnes</span>
+                                <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Wi-Fi</span>
+                            </div> --}}
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-lg">{{ $annonce->prix }} MAD <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
+                                <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
                             </div>
                         </div>
-                        <h3 class="font-bold mb-2 text-lg">Appartement moderne près du stade</h3>
-                        <p class="text-gray-600 text-sm mb-3">À 10 min à pied du Stade Mohammed V, parfait pour les matchs du Mondial.</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">2 chambres</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">4 personnes</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Wi-Fi</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">950 MAD <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
-                        </div>
                     </div>
-                </div>
-                
-                <!-- Listing 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Villa à Madrid" class="w-full h-48 object-cover">
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Villa • Madrid</span>
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.9</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold mb-2 text-lg">Villa luxueuse avec piscine</h3>
-                        <p class="text-gray-600 text-sm mb-3">Accès facile au stade Santiago Bernabéu, idéal pour les groupes.</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">4 chambres</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">8 personnes</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Piscine</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">250 EUR <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Listing 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Loft à Lisbonne" class="w-full h-48 object-cover">
-                        <div class="absolute top-0 left-0 bg-blue-500 text-white px-3 py-1 m-3 rounded-lg text-sm font-medium">
-                            Nouveau
-                        </div>
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Loft • Lisbonne</span>
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.7</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold mb-2 text-lg">Loft moderne au centre-ville</h3>
-                        <p class="text-gray-600 text-sm mb-3">À 15 minutes en métro du stade de la Luz. Quartier animé.</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">1 chambre</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">2 personnes</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Wi-Fi</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">180 EUR <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Listing 4 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Riad à Marrakech" class="w-full h-48 object-cover">
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Riad • Marrakech</span>
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.9</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold mb-2 text-lg">Riad authentique dans la médina</h3>
-                        <p class="text-gray-600 text-sm mb-3">Expérience marocaine traditionnelle avec service de navette vers le stade.</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">3 chambres</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">6 personnes</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Navette</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">850 MAD <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Listing 5 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Appartement à Barcelone" class="w-full h-48 object-cover">
-                        <div class="absolute top-0 left-0 bg-red-500 text-white px-3 py-1 m-3 rounded-lg text-sm font-medium">
-                            -15%
-                        </div>
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Appartement • Barcelone</span>
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.6</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold mb-2 text-lg">Appartement près du Camp Nou</h3>
-                        <p class="text-gray-600 text-sm mb-3">Situé à seulement 5 minutes du stade. Vue sur la ville depuis le balcon.</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">2 chambres</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">4 personnes</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Balcon</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <span class="line-through text-gray-500 text-sm">200 EUR</span>
-                                <span class="font-bold text-lg ml-1">170 EUR <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            </div>
-                            <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Listing 6 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Maison à Porto" class="w-full h-48 object-cover">
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Maison • Porto</span>
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.8</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold mb-2 text-lg">Maison traditionnelle rénovée</h3>
-                        <p class="text-gray-600 text-sm mb-3">Proche du stade do Dragão et du centre historique de Porto.</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">3 chambres</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">5 personnes</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Parking</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">195 EUR <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Listing 7 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Appartement à Rabat" class="w-full h-48 object-cover">
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Appartement • Rabat</span>
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.7</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold mb-2 text-lg">Bel appartement avec vue mer</h3>
-                        <p class="text-gray-600 text-sm mb-3">À 15 min en voiture du stade. Vue panoramique sur l'océan.</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">2 chambres</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">4 personnes</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Terrasse</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">800 MAD <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Listing 8 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
-                    <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Studio à Madrid" class="w-full h-48 object-cover">
-                        <div class="absolute top-0 left-0 bg-green-500 text-white px-3 py-1 m-3 rounded-lg text-sm font-medium">
-                            Économique
-                        </div>
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Studio • Madrid</span>
-                            <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.5</span>
-                            </div>
-                        </div>
-                        <h3 class="font-bold mb-2 text-lg">Studio cosy en plein centre</h3>
-                        <p class="text-gray-600 text-sm mb-3">Accès facile en métro au stade Santiago Bernabéu (20 min).</p>
-                        <div class="flex flex-wrap gap-2 mb-3">
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Studio</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">2 personnes</span>
-                            <span class="bg-gray-100 text-gray-700 text-xs py-1 px-2 rounded">Wi-Fi</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">120 EUR <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             
             <!-- Pagination -->
