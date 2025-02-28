@@ -6,7 +6,7 @@
         </button>
     </div>
     
-    <form method="post" action="" class="my-4 px-10 space-y-6">
+    <form method="post" action="{{ route('dashbord') }}" class="my-4 px-10 space-y-6">
         @csrf
 
         <input type="hidden" id="property_id" name="property_id">
