@@ -14,6 +14,7 @@ class Annonce extends Model
         'start_date',
         'end_date',
         'status',
+        'soft_delete',
     ];
 
     public function touriste()
