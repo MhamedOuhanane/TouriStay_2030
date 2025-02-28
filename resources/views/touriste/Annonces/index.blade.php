@@ -13,6 +13,7 @@
                     <input 
                         type="text" 
                         name="search"
+                        value="{{ $searchTerm ?? '' }}"
                         placeholder="Rechercher une destination..." 
                         class="w-full p-3 pl-10 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     >
@@ -43,9 +44,9 @@
                     <div  class="flex space-x-2">
                         <select name="pagination" id="Selectpagination"
                             class="w-14 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none">
-                            <option value="4">4</option>
-                            <option value="10">10</option>
-                            <option value="25">25</option>
+                            <option value="4" {{ $paginateTerm == 4 ? 'selected' : '' }}>4</option>
+                            <option value="10" {{ $paginateTerm == 10 ? 'selected' : '' }}>10</option>
+                            <option value="25" {{ $paginateTerm == 25 ? 'selected' : '' }}>25</option>
                         </select>
                     </div>
                 </div>
@@ -280,4 +281,9 @@
         </div>
     </div>
 </section>
+<script>
+    Selectpagination.addEventListener('change', function() {
+        formulaireAnnonce.submit();
+    });
+</script>
 </x-master-layout>    
