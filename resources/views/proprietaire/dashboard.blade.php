@@ -16,16 +16,16 @@
                     <h2 class="text-lg font-medium text-gray-900">
                         My Properties
                     </h2>
-                    <button id="addNewPropertyBtn" class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition flex items-center">
+                    <a href="{{ route('annonce.create') }}" id="addNewPropertyBtn" class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition flex items-center">
                         <i class="fas fa-plus mr-2"></i> Add New Property
-                    </button>
+                    </a>
                 </div>
                 
-                <!-- Add/Edit Property Modal -->
+                {{-- <!-- Add/Edit Property Modal -->
                 <div id="propertyModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 hidden">
                     @include('proprietaire.profile.partials.add-listing')
                 </div>
-                
+                 --}}
                 <!-- Properties Listing Table -->
                 <div class="p-6">
                     <div class="overflow-x-auto">

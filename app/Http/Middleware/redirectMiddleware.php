@@ -24,13 +24,13 @@ class redirectMiddleware
             case session('role'):
                 return $next($request);
                 break;
-            
+                
             case 'admine':
-                return redirect()->route('admine.dashbord');
+                return redirect()->route('admine.dashboard');
                 break;
-
+                   
             case 'proprietaire':
-                return redirect()->route('owner.dashbord');
+                return redirect()->route('owner.dashboard');
                 break;
             
             default:

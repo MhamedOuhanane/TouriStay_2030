@@ -13,22 +13,23 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware('auth', 'role:touriste')->group(function () {
+Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonces.index');
     Route::get('/profile.touriste', [TouristeController::class, 'index'])->name('touriste.profile');
 });
 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {
-    Route::get('/dashbord', [ProprietaireController::class, 'index'])->name('owner.dashbord');
-    Route::post('/dashbord', [AnnonceController::class, 'store'])->name('owner.annonce.store');
+    Route::get('/dashboard', [ProprietaireController::class, 'index'])->name('owner.dashboard');
+    Route::post('/dashboard', [AnnonceController::class, 'store'])->name('dashboard.store');
+    Route::get('/Annonces', [AnnonceController::class, 'create'])->name('annonce.create');
     Route::get('/profile', [ProprietaireController::class, 'edit'])->name('owner.profile');
     Route::patch('/profile', [ProprietaireController::class, 'update'])->name('owner.profile.update');
     Route::delete('/profile', [ProprietaireController::class, 'destroy'])->name('owner.profile.destroy');
 });
 
 Route::middleware('auth', 'role:admine')->group(function () {
-    Route::get('/dashbord.admine', [AdmineController::class, 'creat'])->name('admine.dashbord');
+    Route::get('/dashboard.admine', [AdmineController::class, 'creat'])->name('admine.dashboard');
 });
 
 
