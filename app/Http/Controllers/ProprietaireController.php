@@ -70,24 +70,29 @@ class ProprietaireController extends Controller
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $owner->id],
-            'phone' => ['nullable', 'string', 'size:14'],
+            'phone' => ['nullable', 'string', 'min:13', 'max:14'],
             'city' => ['nullable', 'string', 'max:255'],
-            'Country' => ['required', 'in:morocco,spain,portugal,other'],
+            'Country' => ['nullable', 'in:Morocco,Spain,Portugal,Other'],
         ]);
-
-        $owner->fill($validation);
+        
+        $owner->first_name = $validation['first_name'];
+        $owner->last_name = $validation['last_name'];
+        $owner->email = $validation['email'];
+        $owner->phone = $validation['phone'];
+        $owner->city = $validation['city'];
+        $owner->Country = $validation['Country'];
 
         if ($owner->isDirty('email')) {
             $owner->email_verified_at = null;
         }
-
+        
         // $user = Auth::user();
         // if ($user->email !== $request->email) {
-        //     $user->email = $request->email;
-        //     $user->save();
-        // }
-
-        $owner->save();
+            //     $user->email = $request->email;
+            //     $user->save();
+            // }
+            
+            $owner->save();
 
         return Redirect::route('owner.profile')->with('status', 'profile-updated');
     }

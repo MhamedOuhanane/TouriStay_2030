@@ -37,6 +37,8 @@
                     <div class="absolute -bottom-16 left-8">
                         <div class="h-32 w-32 rounded-full border-4 border-white overflow-hidden bg-white">
                             <img src="{{ asset('storage/'. $owner->photo) }}" alt="Profile photo" class="w-full h-full object-cover">
+
+                            <x-text-input id='updatPhoto' name='photo' class="hidden" />
                         </div>
                     </div>
                     
@@ -51,7 +53,7 @@
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
                         <div>
                             <h1 class="text-2xl font-bold text-green-700">{{ $owner->getFullNameAttribute() }}</h1>
-                            <p class="text-gray-600"><i class="fas fa-map-marker-alt mr-2"></i>{{ $owner->city }},{{ $owner->country }}</p>
+                            <p class="text-gray-600"><i class="fas fa-map-marker-alt mr-2"></i>{{ $owner->city }}, {{ $owner->Country }}</p>
                         </div>
                         <div class="flex mt-4 md:mt-0">
                             <span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-sm mr-2">
