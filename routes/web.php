@@ -31,7 +31,7 @@ Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(f
     Route::delete('/profile', [ProprietaireController::class, 'destroy'])->name('owner.profile.destroy');
 });
 
-Route::middleware('auth', 'role:admine')->group(function () {
+Route::middleware('auth', 'role:admine', 'redirect:admine')->group(function () {
     Route::get('/dashboard.admine', [AdmineController::class, 'creat'])->name('admine.dashboard');
 });
 

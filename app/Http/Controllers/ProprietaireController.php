@@ -16,6 +16,7 @@ class ProprietaireController extends Controller
      */
     public function index()
     {
+        $roles = Auth::user()->roles;
         $colour = [
             'En Attente' => "bg-yellow-100 text-yellow-800", 
             'Accepter' => "bg-green-100 text-green-800", 
@@ -23,7 +24,7 @@ class ProprietaireController extends Controller
         ];
 
         $Annonces = Annonce::where('proprietaire_id', Auth::id())->get();
-        return view('proprietaire.dashboard', compact('Annonces', 'colour'));
+        return view('proprietaire.dashboard', compact('Annonces', 'colour', 'roles'));
     }
 
     /**
@@ -55,6 +56,7 @@ class ProprietaireController extends Controller
      */
     public function edit(Request $request)
     {
+        $roles = Auth::user()->roles;
         $listings = Annonce::where('proprietaire_id', Auth::id())
                             ->where('status', 'Accepter')
                             ->get();
@@ -62,6 +64,7 @@ class ProprietaireController extends Controller
         return view('proprietaire.profile.edit', [
             'owner' => $owner,
             'Annonces' => $listings,
+            'roles' => $roles,
         ]);
     }
 

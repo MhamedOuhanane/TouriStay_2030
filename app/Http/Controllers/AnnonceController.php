@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Annonce;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Action;
 use Illuminate\Support\Facades\Auth;
 
 class AnnonceController extends Controller
@@ -13,7 +14,7 @@ class AnnonceController extends Controller
      */
     public function index()
     {
-        return view('/');
+        return view('touriste.Annonces.index');
     }
 
     /**
@@ -78,6 +79,8 @@ class AnnonceController extends Controller
      */
     public function update(Request $request, Annonce $annonce)
     {
+        $annonce = Annonce::find($request->id);
+        
         $validation = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
@@ -89,6 +92,8 @@ class AnnonceController extends Controller
         ]);
 
         $annonce->fill($validation);
+        
+        $annonce->proprietaire_id = Auth::id();
 
         if ($annonce->photo != $request->photo) {
             if ($request->hasFile('photo')) {

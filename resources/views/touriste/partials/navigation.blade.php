@@ -1,3 +1,4 @@
+
 <!-- Navigation -->
 <nav class="bg-green-200 text-green-900 shadow-md fixed w-full z-50">
     <div class="container mx-auto px-6 py-1 flex justify-between items-center">

@@ -1,4 +1,4 @@
-<x-master>
+<x-master-layout>
     {{-- @include('touriste.partials.navigation'); --}}
 <!-- Hero Section -->
     <section class="relative pt-20 pb-32 bg-gradient-to-r from-green-400 to-green-600 text-white">
@@ -415,4 +415,4 @@
             </div>
         </div>
     </section>
-</x-master>
+</x-master-layout>
