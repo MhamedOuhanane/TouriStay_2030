@@ -12,7 +12,6 @@ class TouristeController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -42,9 +41,11 @@ class TouristeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Touriste $touriste)
+    public function edit(Request $request)
     {
-        //
+        return view('touriste.profile.edit',[
+            'touriste' => $request->user()
+        ]);
     }
 
     /**

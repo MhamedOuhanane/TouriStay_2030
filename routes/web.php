@@ -17,7 +17,9 @@ Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function 
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonces.index');
     Route::post('/annonces', [AnnonceController::class, 'filtrage'])->name('Annonce.filtrage');
-    Route::get('/profile.touriste', [TouristeController::class, 'index'])->name('touriste.profile');
+    Route::get('/profile.touriste', [TouristeController::class, 'edit'])->name('touriste.profile');
+    Route::post('/annonce.favoris', [AnnonceController::class, 'favoris'])->name('annonce.favoris');
+    Route::patch('/profile.touriste', [TouristeController::class, 'edit'])->name('touriste.profile.update');
 });
 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {
