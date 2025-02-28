@@ -51,9 +51,9 @@ class ProprietaireController extends Controller
         $listings = Annonce::where('proprietaire_id', Auth::id())
                             ->where('status', 'Accepter')
                             ->get();
-        
+        $owner = Proprietaire::find($request->user()->id);
         return view('proprietaire.profile.edit', [
-            'user' => $request->user(),
+            'owner' => $owner,
             'Annonces' => $listings,
         ]);
     }
@@ -61,17 +61,35 @@ class ProprietaireController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Proprietaire $proprietaire)
+    public function update(Request $request, Proprietaire $owner)
     {
-        $request->user()->fill($request->validated());
+        
+        $owner = Proprietaire::find($request->user()->id);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $validation = $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $owner->id],
+            'phone' => ['nullable', 'string', 'size:14'],
+            'city' => ['nullable', 'string', 'max:255'],
+            'Country' => ['required', 'in:morocco,spain,portugal,other'],
+        ]);
+
+        $owner->fill($validation);
+
+        if ($owner->isDirty('email')) {
+            $owner->email_verified_at = null;
         }
 
-        $request->user()->save();
+        // $user = Auth::user();
+        // if ($user->email !== $request->email) {
+        //     $user->email = $request->email;
+        //     $user->save();
+        // }
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $owner->save();
+
+        return Redirect::route('owner.profile')->with('status', 'profile-updated');
     }
 
     /**

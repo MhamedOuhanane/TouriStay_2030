@@ -8,7 +8,7 @@
         </div>
         <div class="flex justify-between items-center border-b pb-3">
             <span class="text-gray-600">Registration date</span>
-            <span class="font-medium">{{ $user->formatDate('F j, Y') }}</span>
+            <span class="font-medium">{{ $owner->formatDate('F j, Y') }}</span>
         </div>
         <div class="flex justify-between items-center border-b pb-3">
             <span class="text-gray-600">Active listings</span>

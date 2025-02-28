@@ -36,7 +36,7 @@
                 <div class="bg-green-500 h-40 relative">
                     <div class="absolute -bottom-16 left-8">
                         <div class="h-32 w-32 rounded-full border-4 border-white overflow-hidden bg-white">
-                            <img src="{{ asset('storage/'. $user->photo) }}" alt="Profile photo" class="w-full h-full object-cover">
+                            <img src="{{ asset('storage/'. $owner->photo) }}" alt="Profile photo" class="w-full h-full object-cover">
                         </div>
                     </div>
                     
@@ -50,8 +50,8 @@
                 <div class="pt-20 pb-6 px-8">
                     <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
                         <div>
-                            <h1 class="text-2xl font-bold text-green-700">{{ $user->getFullNameAttribute() }}</h1>
-                            <p class="text-gray-600"><i class="fas fa-map-marker-alt mr-2"></i>{{ $user->city }},{{ $user->country }}</p>
+                            <h1 class="text-2xl font-bold text-green-700">{{ $owner->getFullNameAttribute() }}</h1>
+                            <p class="text-gray-600"><i class="fas fa-map-marker-alt mr-2"></i>{{ $owner->city }},{{ $owner->country }}</p>
                         </div>
                         <div class="flex mt-4 md:mt-0">
                             <span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-sm mr-2">
@@ -67,7 +67,7 @@
                         <div class="flex flex-wrap">
                             <div class="mr-8 mb-2">
                                 <span class="text-gray-600 text-sm">Member since</span>
-                                <p class="font-medium">{{ $user->formatDate('F Y') }}</p>
+                                <p class="font-medium">{{ $owner->formatDate('F Y') }}</p>
                             </div>
                             <div class="mr-8 mb-2">
                                 <span class="text-gray-600 text-sm">Languages</span>
