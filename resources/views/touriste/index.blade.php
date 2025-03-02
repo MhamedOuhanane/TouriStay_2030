@@ -1,71 +1,114 @@
-<x-master-layout>
-    {{-- @include('touriste.partials.navigation'); --}}
-<!-- Hero Section -->
-    <section class="relative pt-20 pb-32 bg-gradient-to-r from-green-400 to-green-600 text-white">
-        <div class="absolute inset-0 overflow-hidden">
-            <img src="/api/placeholder/1600/900" alt="Stade de football du Mondial 2030" class="w-full h-full object-cover opacity-20">
-        </div>
-        <div class="container mx-auto px-4 pt-10 relative z-10">
-            <div class="flex flex-col items-center text-center mb-10">
-                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">Trouvez votre hébergement idéal pour le Mondial 2030</h1>
-                <p class="text-xl md:text-2xl max-w-3xl mb-8">La meilleure sélection de logements à proximité des stades au Maroc, en Espagne et au Portugal</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="bg-white text-green-600 font-bold py-3 px-6 rounded-lg hover:bg-green-50 transition shadow-md">Rechercher un logement</a>
-                    <a href="#" class="bg-transparent border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white/10 transition">Devenir hôte</a>
+{{-- <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TouriStay 2030 - Hébergements pour le Mondial 2030</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00B050',
+                        secondary: '#FF6B6B',
+                        light: '#A7F0D1',
+                        dark: '#1A1A1A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ico%20%282%29-sgwWysmra38g28UV2so4My6tZVzr2y.png" alt="TouriStay 2030 Logo" class="h-16">
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Accueil</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Hébergements</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Destinations</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">À propos</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Connexion</a>
+                    <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Inscription</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
                 </div>
             </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gray-900 text-white">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80'); filter: brightness(0.5);"></div>
+        <div class="container mx-auto px-4 py-24 relative z-10">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Trouvez votre hébergement idéal pour le Mondial 2030</h1>
+                <p class="text-xl mb-8">Découvrez des milliers de logements au Maroc, en Espagne et au Portugal pour vivre pleinement l'expérience du Mondial 2030.</p>
+            </div>
             
-            <!-- Search Form -->
-            <div class="bg-white rounded-xl shadow-xl p-4 md:p-6 max-w-5xl mx-auto">
-                <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <div class="col-span-1">
-                        <label class="block text-gray-700 text-sm font-medium mb-2">Destination</label>
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-4xl mx-auto">
+                <form class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Destination</label>
                         <div class="relative">
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none">
+                            <select class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                                 <option>Toutes les villes</option>
                                 <option>Casablanca, Maroc</option>
                                 <option>Rabat, Maroc</option>
-                                <option>Marrakech, Maroc</option>
                                 <option>Madrid, Espagne</option>
                                 <option>Barcelone, Espagne</option>
                                 <option>Lisbonne, Portugal</option>
                                 <option>Porto, Portugal</option>
                             </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <i class="fas fa-chevron-down"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-1">
-                        <label class="block text-gray-700 text-sm font-medium mb-2">Date d'arrivée</label>
-                        <div class="relative">
-                            <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Dates</label>
+                        <input type="text" placeholder="Arrivée - Départ" class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                     </div>
-                    <div class="col-span-1">
-                        <label class="block text-gray-700 text-sm font-medium mb-2">Date de départ</label>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Voyageurs</label>
                         <div class="relative">
-                            <input type="date" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
-                        </div>
-                    </div>
-                    <div class="col-span-1">
-                        <label class="block text-gray-700 text-sm font-medium mb-2">Voyageurs</label>
-                        <div class="relative">
-                            <select class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none">
+                            <select class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                                 <option>1 voyageur</option>
                                 <option>2 voyageurs</option>
                                 <option>3 voyageurs</option>
                                 <option>4 voyageurs</option>
                                 <option>5+ voyageurs</option>
                             </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                <i class="fas fa-chevron-down text-gray-400"></i>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <i class="fas fa-chevron-down"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-1 md:col-span-4">
-                        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
-                            <i class="fas fa-search mr-2"></i> Rechercher un hébergement
+                    
+                    <div class="md:col-span-3">
+                        <button class="w-full bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-opacity-90 transition duration-300">
+                            <i class="fas fa-search mr-2"></i> Rechercher
                         </button>
                     </div>
                 </form>
@@ -73,271 +116,194 @@
         </div>
     </section>
 
-    <!-- Featured Destinations -->
+    <!-- Features Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-green-600">Destinations populaires pour le Mondial 2030</h2>
-                <p class="text-gray-600 max-w-3xl mx-auto">Découvrez les meilleures villes hôtes pour trouver votre logement idéal à proximité des stades</p>
-            </div>
+            <h2 class="text-3xl font-bold text-center mb-12">Pourquoi choisir TouriStay 2030 ?</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Casablanca Card -->
-                <div class="rounded-xl overflow-hidden shadow-lg group">
-                    <div class="relative h-64">
-                        <img src="/api/placeholder/600/400" alt="Casablanca" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-white text-xl font-bold">Casablanca, Maroc</h3>
-                            <p class="text-white/80">254 hébergements disponibles</p>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-light inline-block p-4 rounded-full mb-4">
+                        <i class="fas fa-map-marker-alt text-primary text-3xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="flex items-center text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <span class="text-gray-600">4.5/5 (120 avis)</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">Hébergements à proximité du stade Mohammed V, parfaits pour les matchs du Mondial.</p>
-                        <a href="#" class="text-green-600 font-medium hover:text-green-800 flex items-center">
-                            Explorer les logements <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Emplacements stratégiques</h3>
+                    <p class="text-gray-600">Des hébergements situés à proximité des stades et des principales attractions touristiques.</p>
                 </div>
                 
-                <!-- Madrid Card -->
-                <div class="rounded-xl overflow-hidden shadow-lg group">
-                    <div class="relative h-64">
-                        <img src="/api/placeholder/600/400" alt="Madrid" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-white text-xl font-bold">Madrid, Espagne</h3>
-                            <p class="text-white/80">352 hébergements disponibles</p>
-                        </div>
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-light inline-block p-4 rounded-full mb-4">
+                        <i class="fas fa-shield-alt text-primary text-3xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="flex items-center text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span class="text-gray-600">4.8/5 (186 avis)</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">Découvrez nos logements près du Santiago Bernabéu pour vivre pleinement le Mondial.</p>
-                        <a href="#" class="text-green-600 font-medium hover:text-green-800 flex items-center">
-                            Explorer les logements <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Réservation sécurisée</h3>
+                    <p class="text-gray-600">Système de paiement sécurisé et vérification des propriétaires pour votre tranquillité d'esprit.</p>
                 </div>
                 
-                <!-- Lisbonne Card -->
-                <div class="rounded-xl overflow-hidden shadow-lg group">
-                    <div class="relative h-64">
-                        <img src="/api/placeholder/600/400" alt="Lisbonne" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        <div class="absolute inset-0 bg-gradient-to-t from-green-900/70 to-transparent"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-white text-xl font-bold">Lisbonne, Portugal</h3>
-                            <p class="text-white/80">198 hébergements disponibles</p>
-                        </div>
+                <div class="bg-gray-50 p-6 rounded-lg text-center">
+                    <div class="bg-light inline-block p-4 rounded-full mb-4">
+                        <i class="fas fa-headset text-primary text-3xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <div class="flex items-center text-yellow-400 mr-2">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <span class="text-gray-600">4.1/5 (92 avis)</span>
-                        </div>
-                        <p class="text-gray-600 mb-4">Séjournez près du stade de la Luz pour profiter au maximum des matchs du Mondial.</p>
-                        <a href="#" class="text-green-600 font-medium hover:text-green-800 flex items-center">
-                            Explorer les logements <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Support 24/7</h3>
+                    <p class="text-gray-600">Une équipe disponible à tout moment pour répondre à vos questions et résoudre vos problèmes.</p>
                 </div>
-            </div>
-            
-            <div class="text-center mt-10">
-                <a href="#" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
-                    Voir toutes les destinations
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- Featured Listings -->
-    <section class="py-16 bg-green-50">
+    <!-- Popular Accommodations -->
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-green-600">Hébergements mis en avant</h2>
-                <p class="text-gray-600 max-w-3xl mx-auto">Découvrez notre sélection des meilleurs logements pour le Mondial 2030</p>
+            <div class="flex justify-between items-center mb-12">
+                <h2 class="text-3xl font-bold">Hébergements populaires</h2>
+                <a href="#" class="text-primary font-medium hover:underline">Voir tout <i class="fas fa-arrow-right ml-1"></i></a>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Listing 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                <!-- Accommodation 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
                     <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Appartement à Casablanca" class="w-full h-48 object-cover">
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Appartement à Casablanca" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Appartement • Casablanca</span>
+                            <span class="text-sm text-gray-500">Casablanca, Maroc</span>
                             <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.8</span>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <span class="text-sm font-medium ml-1">4.8</span>
                             </div>
                         </div>
-                        <h3 class="font-bold mb-2 text-lg">Appartement moderne près du stade</h3>
-                        <p class="text-gray-600 text-sm mb-3">À 10 min à pied du Stade Mohammed V, parfait pour les matchs du Mondial.</p>
+                        <h3 class="font-semibold mb-2">Appartement moderne avec vue</h3>
+                        <p class="text-gray-600 text-sm mb-3">À 15 min du stade Mohammed V</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">950 MAD <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <span class="bg-green-100 text-green-800 text-xs py-1 px-2 rounded-lg">5 nuits minimum</span>
+                            <span class="font-bold text-lg">120 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="text-primary font-medium text-sm hover:underline">Voir détails</a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Listing 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                <!-- Accommodation 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
                     <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Villa à Madrid" class="w-full h-48 object-cover">
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80" alt="Villa à Madrid" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Villa • Madrid</span>
+                            <span class="text-sm text-gray-500">Madrid, Espagne</span>
                             <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.9</span>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <span class="text-sm font-medium ml-1">4.9</span>
                             </div>
                         </div>
-                        <h3 class="font-bold mb-2 text-lg">Villa luxueuse avec piscine</h3>
-                        <p class="text-gray-600 text-sm mb-3">Accès facile au stade Santiago Bernabéu, idéal pour les groupes.</p>
+                        <h3 class="font-semibold mb-2">Villa avec piscine privée</h3>
+                        <p class="text-gray-600 text-sm mb-3">À 20 min du Santiago Bernabéu</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">250 EUR <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <span class="bg-green-100 text-green-800 text-xs py-1 px-2 rounded-lg">7 nuits minimum</span>
+                            <span class="font-bold text-lg">250 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="text-primary font-medium text-sm hover:underline">Voir détails</a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Listing 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                <!-- Accommodation 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
                     <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Loft à Lisbonne" class="w-full h-48 object-cover">
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
+                        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Loft à Lisbonne" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Loft • Lisbonne</span>
+                            <span class="text-sm text-gray-500">Lisbonne, Portugal</span>
                             <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.7</span>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <span class="text-sm font-medium ml-1">4.7</span>
                             </div>
                         </div>
-                        <h3 class="font-bold mb-2 text-lg">Loft moderne au centre-ville</h3>
-                        <p class="text-gray-600 text-sm mb-3">À 15 minutes en métro du stade de la Luz. Quartier animé.</p>
+                        <h3 class="font-semibold mb-2">Loft au cœur de la ville</h3>
+                        <p class="text-gray-600 text-sm mb-3">À 10 min du stade da Luz</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">180 EUR <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <span class="bg-green-100 text-green-800 text-xs py-1 px-2 rounded-lg">3 nuits minimum</span>
+                            <span class="font-bold text-lg">180 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="text-primary font-medium text-sm hover:underline">Voir détails</a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Listing 4 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                <!-- Accommodation 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
                     <div class="relative">
-                        <img src="/api/placeholder/400/300" alt="Appartement à Marrakech" class="w-full h-48 object-cover">
-                        <button class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
-                            <i class="far fa-heart text-red-500"></i>
-                        </button>
+                        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1774&q=80" alt="Maison à Rabat" class="w-full h-48 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
                     </div>
                     <div class="p-4">
                         <div class="flex justify-between items-center mb-2">
-                            <span class="font-medium text-gray-700">Riad • Marrakech</span>
+                            <span class="text-sm text-gray-500">Rabat, Maroc</span>
                             <div class="flex items-center">
-                                <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                <span>4.9</span>
+                                <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                <span class="text-sm font-medium ml-1">4.6</span>
                             </div>
                         </div>
-                        <h3 class="font-bold mb-2 text-lg">Riad authentique dans la médina</h3>
-                        <p class="text-gray-600 text-sm mb-3">Expérience marocaine traditionnelle avec service de navette vers le stade.</p>
+                        <h3 class="font-semibold mb-2">Maison traditionnelle rénovée</h3>
+                        <p class="text-gray-600 text-sm mb-3">À 15 min du stade Moulay Abdallah</p>
                         <div class="flex justify-between items-center">
-                            <span class="font-bold text-lg">850 MAD <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                            <span class="bg-green-100 text-green-800 text-xs py-1 px-2 rounded-lg">4 nuits minimum</span>
+                            <span class="font-bold text-lg">150 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="text-primary font-medium text-sm hover:underline">Voir détails</a>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="text-center mt-10">
-                <a href="#" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
-                    Explorer tous les hébergements
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
+    <!-- World Cup 2030 Section -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-green-600">Comment ça marche</h2>
-                <p class="text-gray-600 max-w-3xl mx-auto">TouriStay 2030 vous simplifie la vie pour trouver ou proposer un hébergement</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="bg-green-100 text-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-search text-2xl"></i>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Mondial 2030: Une expérience unique</h2>
+                    <p class="text-gray-600 mb-6">Pour la première fois de l'histoire, la Coupe du Monde de football sera organisée par trois pays: le Maroc, l'Espagne et le Portugal. Profitez de cette occasion unique pour découvrir ces magnifiques destinations tout en vivant la passion du football.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <img src="https://flagcdn.com/w320/ma.png" alt="Drapeau du Maroc" class="h-8 mx-auto mb-2">
+                            <h3 class="font-semibold">Maroc</h3>
+                            <p class="text-sm text-gray-600">5 villes hôtes</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <img src="https://flagcdn.com/w320/es.png" alt="Drapeau de l'Espagne" class="h-8 mx-auto mb-2">
+                            <h3 class="font-semibold">Espagne</h3>
+                            <p class="text-sm text-gray-600">6 villes hôtes</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <img src="https://flagcdn.com/w320/pt.png" alt="Drapeau du Portugal" class="h-8 mx-auto mb-2">
+                            <h3 class="font-semibold">Portugal</h3>
+                            <p class="text-sm text-gray-600">4 villes hôtes</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Recherchez</h3>
-                    <p class="text-gray-600">Trouvez l'hébergement idéal en fonction de la ville hôte, des dates de match et de vos préférences.</p>
+                    
+                    <a href="#" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-opacity-90 transition duration-300">En savoir plus sur le Mondial 2030</a>
                 </div>
                 
-                <div class="text-center">
-                    <div class="bg-green-100 text-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-calendar-check text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Réservez</h3>
-                    <p class="text-gray-600">Sécurisez votre séjour en quelques clics, avec confirmation instantanée et paiement sécurisé.</p>
-                </div>
-                
-                <div class="text-center">
-                    <div class="bg-green-100 text-green-600 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-futbol text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Profitez</h3>
-                    <p class="text-gray-600">Vivez le Mondial 2030 dans les meilleures conditions avec un logement à proximité des stades.</p>
-                </div>
-            </div>
-            
-            <div class="bg-green-50 rounded-xl p-8 mt-12">
-                <div class="flex flex-col md:flex-row items-center justify-between">
-                    <div class="mb-6 md:mb-0 md:mr-6">
-                        <h3 class="text-2xl font-bold mb-3 text-green-600">Vous avez un logement à proposer ?</h3>
-                        <p class="text-gray-600 mb-4">Rejoignez notre communauté d'hôtes et gagnez un revenu supplémentaire pendant le Mondial 2030.</p>
-                        <a href="#" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
-                            Devenir hôte
-                        </a>
-                    </div>
-                    <div class="w-full md:w-1/3">
-                        <img src="/api/placeholder/600/400" alt="Devenir hôte" class="w-full h-auto rounded-lg shadow-md">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80" alt="Stade de football" class="rounded-lg shadow-lg w-full">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center">
+                            <div class="bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center mr-4">
+                                <i class="fas fa-calendar-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Début du tournoi</p>
+                                <p class="font-semibold">Juin 2030</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -345,74 +311,636 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="py-16 bg-green-50">
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 text-green-600">Ce que disent nos utilisateurs</h2>
-                <p class="text-gray-600 max-w-3xl mx-auto">Découvrez les expériences partagées par notre communauté</p>
-            </div>
+            <h2 class="text-3xl font-bold text-center mb-12">Ce que disent nos utilisateurs</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="flex items-center text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6">"J'ai trouvé un appartement parfait à Casablanca pour assister aux matchs avec mes amis. Emplacement idéal et hôte très accueillant."</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                            <img src="/api/placeholder/100/100" alt="Photo de profil" class="w-full h-full object-cover">
-                        </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Photo de profil" class="w-12 h-12 rounded-full mr-4">
                         <div>
-                            <h4 class="font-medium">Carlos Rodriguez</h4>
-                            <p class="text-gray-500 text-sm">Madrid, Espagne</p>
+                            <h3 class="font-semibold">Sophie Martin</h3>
+                            <p class="text-sm text-gray-500">France</p>
                         </div>
                     </div>
+                    <div class="mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600">"J'ai réservé un appartement à Casablanca pour le match d'ouverture. Le processus était simple et l'hébergement était exactement comme sur les photos. Je recommande vivement TouriStay !"</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="flex items-center text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6">"En tant que propriétaire, j'ai pu louer mon appartement pendant le Mondial et gagner un revenu supplémentaire. La plateforme est très facile à utiliser."</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                            <img src="/api/placeholder/100/100" alt="Photo de profil" class="w-full h-full object-cover">
-                        </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Photo de profil" class="w-12 h-12 rounded-full mr-4">
                         <div>
-                            <h4 class="font-medium">Fatima Benali</h4>
-                            <p class="text-gray-500 text-sm">Rabat, Maroc</p>
+                            <h3 class="font-semibold">Carlos Rodriguez</h3>
+                            <p class="text-sm text-gray-500">Mexique</p>
                         </div>
                     </div>
+                    <div class="mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star-half-alt text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600">"Excellente plateforme pour trouver un logement pendant les grands événements sportifs. J'ai pu réserver facilement une villa à Madrid pour ma famille. Le propriétaire était très accueillant."</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="flex items-center text-yellow-400 mb-4">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6">"J'ai réservé un logement à Lisbonne pour trois matchs. Le système de recherche est excellent et j'ai trouvé exactement ce que je cherchais."</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                            <img src="/api/placeholder/100/100" alt="Photo de profil" class="w-full h-full object-cover">
-                        </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Photo de profil" class="w-12 h-12 rounded-full mr-4">
                         <div>
-                            <h4 class="font-medium">Jean Dupont</h4>
-                            <p class="text-gray-500 text-sm">Lyon, France</p>
+                            <h3 class="font-semibold">Amina Khalid</h3>
+                            <p class="text-sm text-gray-500">Égypte</p>
                         </div>
                     </div>
+                    <div class="mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600">"J'ai loué un appartement à Lisbonne pour assister aux matchs du Mondial. L'emplacement était parfait, à proximité du stade et des transports. Le service client de TouriStay a été très réactif."</p>
                 </div>
             </div>
         </div>
     </section>
-</x-master-layout>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Prêt à vivre l'expérience du Mondial 2030 ?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Rejoignez TouriStay dès maintenant et trouvez l'hébergement parfait pour votre séjour au Maroc, en Espagne ou au Portugal.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#" class="bg-white text-primary px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300">Créer un compte</a>
+                <a href="#" class="border-2 border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-primary transition duration-300">Explorer les hébergements</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ico%20%282%29-sgwWysmra38g28UV2so4My6tZVzr2y.png" alt="TouriStay 2030 Logo" class="h-16 mb-4">
+                    <p class="text-gray-400 mb-4">La plateforme de location d'hébergements pour le Mondial 2030 au Maroc, en Espagne et au Portugal.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Hébergements</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Destinations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">À propos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Destinations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Casablanca, Maroc</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Rabat, Maroc</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Madrid, Espagne</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Barcelone, Espagne</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Lisbonne, Portugal</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Porto, Portugal</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">123 Avenue Mohammed V, Casablanca, Maroc</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">+212 522 123 456</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">contact@touristay2030.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2023 TouriStay 2030. Tous droits réservés.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Conditions d'utilisation</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Politique de confidentialité</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Aide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script pour le menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.fa-bars');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'fixed inset-0 bg-gray-900 bg-opacity-90 z-50 flex flex-col items-center justify-center transform translate-x-full transition-transform duration-300 ease-in-out';
+            mobileMenu.innerHTML = `
+                <button class="absolute top-4 right-4 text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="flex flex-col space-y-6 text-center">
+                    <a href="#" class="text-white text-xl font-medium">Accueil</a>
+                    <a href="#" class="text-white text-xl font-medium">Hébergements</a>
+                    <a href="#" class="text-white text-xl font-medium">Destinations</a>
+                    <a href="#" class="text-white text-xl font-medium">À propos</a>
+                    <a href="#" class="text-white text-xl font-medium">Contact</a>
+                    <div class="pt-6 flex flex-col space-y-4">
+                        <a href="#" class="text-white text-xl font-medium">Connexion</a>
+                        <a href="#" class="bg-primary text-white px-6 py-2 rounded-lg font-medium">Inscription</a>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(mobileMenu);
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('translate-x-full');
+            });
+            
+            const closeButton = mobileMenu.querySelector('.fa-times');
+            closeButton.addEventListener('click', function() {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+    </script>
+</body>
+</html>
+ --}}
+
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hébergements - TouriStay 2030</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00B050',
+                        secondary: '#FF6B6B',
+                        light: '#A7F0D1',
+                        dark: '#1A1A1A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ico%20%282%29-sgwWysmra38g28UV2so4My6tZVzr2y.png" alt="TouriStay 2030 Logo" class="h-16">
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary font-medium">Accueil</a>
+                    <a href="hebergements.html" class="text-primary font-medium">Hébergements</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Destinations</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">À propos</a>
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-700 hover:text-primary font-medium">Connexion</a>
+                    <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Inscription</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button class="text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gray-900 text-white py-20">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-center">Trouvez votre hébergement idéal</h1>
+            <p class="text-xl mb-12 text-center max-w-3xl mx-auto">Découvrez une large sélection de logements pour le Mondial 2030 au Maroc, en Espagne et au Portugal.</p>
+            
+            <!-- Search and Filter Form -->
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-4xl mx-auto">
+                <form class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Destination</label>
+                        <select class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>Toutes les villes</option>
+                            <option>Casablanca, Maroc</option>
+                            <option>Rabat, Maroc</option>
+                            <option>Madrid, Espagne</option>
+                            <option>Barcelone, Espagne</option>
+                            <option>Lisbonne, Portugal</option>
+                            <option>Porto, Portugal</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Dates</label>
+                        <input type="text" placeholder="Arrivée - Départ" class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Voyageurs</label>
+                        <select class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option>1 voyageur</option>
+                            <option>2 voyageurs</option>
+                            <option>3 voyageurs</option>
+                            <option>4 voyageurs</option>
+                            <option>5+ voyageurs</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Prix max. par nuit</label>
+                        <input type="number" placeholder="€" class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                    
+                    <div class="md:col-span-4">
+                        <button class="w-full bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-opacity-90 transition duration-300">
+                            <i class="fas fa-search mr-2"></i> Rechercher
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodations List -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold mb-4 md:mb-0">Hébergements disponibles</h2>
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600">Trier par :</span>
+                    <select class="bg-white border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option>Prix (croissant)</option>
+                        <option>Prix (décroissant)</option>
+                        <option>Mieux notés</option>
+                        <option>Plus populaires</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Accommodation 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Appartement à Casablanca" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-semibold text-xl mb-2">Appartement moderne avec vue</h3>
+                                <p class="text-gray-600 mb-2">Casablanca, Maroc</p>
+                            </div>
+                            <div class="flex items-center bg-primary text-white px-2 py-1 rounded">
+                                <i class="fas fa-star mr-1"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">À 15 min du stade Mohammed V</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-xl">120 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accommodation 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80" alt="Villa à Madrid" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-semibold text-xl mb-2">Villa avec piscine privée</h3>
+                                <p class="text-gray-600 mb-2">Madrid, Espagne</p>
+                            </div>
+                            <div class="flex items-center bg-primary text-white px-2 py-1 rounded">
+                                <i class="fas fa-star mr-1"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">À 20 min du Santiago Bernabéu</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-xl">250 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accommodation 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Loft à Lisbonne" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-semibold text-xl mb-2">Loft au cœur de la ville</h3>
+                                <p class="text-gray-600 mb-2">Lisbonne, Portugal</p>
+                            </div>
+                            <div class="flex items-center bg-primary text-white px-2 py-1 rounded">
+                                <i class="fas fa-star mr-1"></i>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">À 10 min du stade da Luz</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-xl">180 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accommodation 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1774&q=80" alt="Maison à Rabat" class="w-full h-64 object-cover
+                        alt="Maison à Rabat" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-semibold text-xl mb-2">Maison traditionnelle rénovée</h3>
+                                <p class="text-gray-600 mb-2">Rabat, Maroc</p>
+                            </div>
+                            <div class="flex items-center bg-primary text-white px-2 py-1 rounded">
+                                <i class="fas fa-star mr-1"></i>
+                                <span>4.6</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">À 15 min du stade Moulay Abdallah</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-xl">150 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accommodation 5 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Appartement à Barcelone" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-semibold text-xl mb-2">Appartement design près de la plage</h3>
+                                <p class="text-gray-600 mb-2">Barcelone, Espagne</p>
+                            </div>
+                            <div class="flex items-center bg-primary text-white px-2 py-1 rounded">
+                                <i class="fas fa-star mr-1"></i>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">À 25 min du Camp Nou</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-xl">200 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accommodation 6 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Villa à Porto" class="w-full h-64 object-cover">
+                        <div class="absolute top-3 right-3 bg-white p-2 rounded-full shadow">
+                            <i class="far fa-heart text-secondary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="font-semibold text-xl mb-2">Villa avec vue sur le Douro</h3>
+                                <p class="text-gray-600 mb-2">Porto, Portugal</p>
+                            </div>
+                            <div class="flex items-center bg-primary text-white px-2 py-1 rounded">
+                                <i class="fas fa-star mr-1"></i>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">À 20 min du stade do Dragão</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-xl">280 € <span class="text-sm font-normal text-gray-500">/ nuit</span></span>
+                            <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition duration-300">Réserver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-12 flex justify-center">
+                <nav class="inline-flex rounded-md shadow">
+                    <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                        Précédent
+                    </a>
+                    <a href="#" class="px-3 py-2 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                        1
+                    </a>
+                    <a href="#" class="px-3 py-2 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                        2
+                    </a>
+                    <a href="#" class="px-3 py-2 border-t border-b border-gray-300 bg-white text-gray-700 hover:bg-gray-50">
+                        3
+                    </a>
+                    <a href="#" class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                        Suivant
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="bg-primary py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Restez informé des meilleures offres</h2>
+            <p class="text-white text-lg mb-8">Inscrivez-vous à notre newsletter pour recevoir en avant-première nos offres spéciales pour le Mondial 2030.</p>
+            <form class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Votre adresse e-mail" class="flex-grow py-3 px-4 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-white">
+                <button type="submit" class="bg-white text-primary font-medium py-3 px-6 rounded-r-lg hover:bg-gray-100 transition duration-300">S'inscrire</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ico%20%282%29-sgwWysmra38g28UV2so4My6tZVzr2y.png" alt="TouriStay 2030 Logo" class="h-16 mb-4">
+                    <p class="text-gray-400 mb-4">La plateforme de location d'hébergements pour le Mondial 2030 au Maroc, en Espagne et au Portugal.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Liens rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Accueil</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Hébergements</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Destinations</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">À propos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Destinations</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Casablanca, Maroc</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Rabat, Maroc</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Madrid, Espagne</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Barcelone, Espagne</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Lisbonne, Portugal</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Porto, Portugal</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">123 Avenue Mohammed V, Casablanca, Maroc</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">+212 522 123 456</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">contact@touristay2030.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2023 TouriStay 2030. Tous droits réservés.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Conditions d'utilisation</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Politique de confidentialité</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Aide</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script pour le menu mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.fa-bars');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'fixed inset-0 bg-gray-900 bg-opacity-90 z-50 flex flex-col items-center justify-center transform translate-x-full transition-transform duration-300 ease-in-out';
+            mobileMenu.innerHTML = `
+                <button class="absolute top-4 right-4 text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="flex flex-col space-y-6 text-center">
+                    <a href="#" class="text-white text-xl font-medium">Accueil</a>
+                    <a href="#" class="text-white text-xl font-medium">Hébergements</a>
+                    <a href="#" class="text-white text-xl font-medium">Destinations</a>
+                    <a href="#" class="text-white text-xl font-medium">À propos</a>
+                    <a href="#" class="text-white text-xl font-medium">Contact</a>
+                    <div class="pt-6 flex flex-col space-y-4">
+                        <a href="#" class="text-white text-xl font-medium">Connexion</a>
+                        <a href="#" class="bg-primary text-white px-6 py-2 rounded-lg font-medium">Inscription</a>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(mobileMenu);
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('translate-x-full');
+            });
+            
+            const closeButton = mobileMenu.querySelector('.fa-times');
+            closeButton.addEventListener('click', function() {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+    </script>
+</body>
+</html>
+
+

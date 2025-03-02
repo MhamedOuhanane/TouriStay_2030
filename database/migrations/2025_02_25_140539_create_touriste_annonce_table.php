@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('touriste_annonce', function (Blueprint $table) {
+        Schema::create('annonce_touriste', function (Blueprint $table) {
             $table->unsignedBigInteger('annonce_id');
             $table->unsignedBigInteger('touriste_id');
             $table->foreign('touriste_id')->references('id')->on('touristes')->onDelete('cascade');
             $table->foreign('annonce_id')->references('id')->on('annonces')->onDelete('cascade');
-            $table->dateTime('craete_at');
         });
     }
 
