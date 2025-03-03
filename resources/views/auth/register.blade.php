@@ -28,14 +28,14 @@
             <!-- Firts Name -->
             <div>
                 <x-input-label for="first_name" :value="__('First Name')" />
-                <x-text-input id="first_name" class="block mt-1" type="text" name="first_name" :value="old('name')" required placeholder="first_name" autofocus autocomplete="first_name" />
+                <x-text-input id="first_name" class="block w-full mt-1" type="text" name="first_name" :value="old('name')" required placeholder="first_name" autofocus autocomplete="first_name" />
                 <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
             </div>
 
             <!-- Last Name -->
             <div>
                 <x-input-label for="last_name" :value="__('Last Name')" />
-                <x-text-input id="last_name" class="block mt-1" type="text" name="last_name" :value="old('name')" required placeholder="last_name" autofocus autocomplete="last_name" />
+                <x-text-input id="last_name" class="block w-full mt-1" type="text" name="last_name" :value="old('name')" required placeholder="last_name" autofocus autocomplete="last_name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
 
