@@ -28,11 +28,10 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
                     <div>
                         <h1 class="text-2xl font-bold text-green-700">{{ $touriste->getFullNameAttribute() }}</h1>
-                        <p class="text-gray-600"><i class="fas fa-map-marker-alt mr-2"></i>{{ $touriste->city }}, {{ $touriste->Country }}</p>
                     </div>
                     <div class="flex mt-4 md:mt-0">
                         <span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-sm mr-2">
-                            <i class="fas fa-home mr-1"></i> Property Owner
+                            <i class="fas fa-user mr-1"></i> Touriste
                         </span>
                         <span class="bg-red-400 text-white py-1 px-3 rounded-full text-sm">
                             <i class="fas fa-check-circle mr-1"></i> Verified
@@ -60,7 +59,7 @@
             <!-- Left Column: Personal Info -->
             <div class="md:col-span-2">
                 <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-                    @include('proprietaire.profile.partials.update-information-form')
+                    @include('touriste.profile.partials.update-information-form')
                 </div>
             </div>
         </div>
