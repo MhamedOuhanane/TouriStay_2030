@@ -11,10 +11,16 @@ export default {
 
     theme: {
         extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            colors: {
+                primary: '#00B050',
+                secondary: '#FF6B6B',
+                light: '#A7F0D1',
+                dark: '#1A1A1A',
             },
-        },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            },
+        }
     },
 
     plugins: [forms],
