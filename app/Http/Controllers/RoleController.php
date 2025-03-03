@@ -52,7 +52,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        session(['role' => $request->role]);
+        
+        return $this->redirectRole();
     }
 
     /**

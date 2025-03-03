@@ -16,6 +16,7 @@ class ProprietaireController extends Controller
      */
     public function index()
     {
+        
         $roles = Auth::user()->roles;
         $colour = [
             'En Attente' => "bg-yellow-100 text-yellow-800", 

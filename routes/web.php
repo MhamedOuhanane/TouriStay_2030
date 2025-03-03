@@ -2,16 +2,20 @@
 
 use App\Http\Controllers\AdmineController;
 use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProprietaireController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TouristeController;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/session.role', [RoleController::class, 'update'])->name('session.role')->middleware('auth');
 
 Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -35,7 +39,7 @@ Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(f
 });
 
 Route::middleware('auth', 'role:admine', 'redirect:admine')->group(function () {
-    Route::get('/dashboard.admine', [AdmineController::class, 'creat'])->name('admine.dashboard');
+    Route::get('/dashboard.admine', [AdmineController::class, 'index'])->name('admine.dashboard');
 });
 
 
