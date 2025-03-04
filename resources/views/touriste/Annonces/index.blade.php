@@ -87,7 +87,7 @@
                             </div> --}}
                             <div class="flex justify-between items-center">
                                 <span class="font-bold text-lg">{{ $annonce->prix }} MAD <span class="font-normal text-gray-600 text-sm">/ nuit</span></span>
-                                <a href="#" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
+                                <a href="{{ route('annonce.show',$annonce->id) }}" class="text-green-600 font-medium hover:text-green-800">Voir détails</a>
                             </div>
                         </div>
                     </div>

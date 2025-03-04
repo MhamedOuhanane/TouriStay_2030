@@ -35,7 +35,7 @@
                         <div class="relative">
                             <select class="w-full bg-gray-50 border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                                 <option>1 voyageur</option>
-                                <option>2 voyageurs</option>
+                                <option>2 voyageurs</option>    
                                 <option>3 voyageurs</option>
                                 <option>4 voyageurs</option>
                                 <option>5+ voyageurs</option>
