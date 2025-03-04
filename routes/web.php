@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdmineController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
@@ -22,8 +23,8 @@ Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function 
     Route::get('/annonces', [AnnonceController::class, 'index'])->name('annonces.index');
     Route::post('/annonces', [AnnonceController::class, 'filtrage'])->name('Annonce.filtrage');
     Route::get('/profile.touriste', [TouristeController::class, 'edit'])->name('touriste.profile');
-    Route::post('/annonce.favoris', [AnnonceController::class, 'favoris'])->name('annonce.favoris');
     Route::patch('/profile.touriste', [TouristeController::class, 'update'])->name('touriste.profile.update');
+    Route::post('/annonce.favoris/{annonce}', [FavorisController::class, 'store'])->name('annonce.favoris');
 });
 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {

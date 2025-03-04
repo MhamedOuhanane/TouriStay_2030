@@ -15,8 +15,17 @@ class AnnonceController extends Controller
      */
     public function index()
     {
+        $userId = Auth::id();
+                
         $paginateTerm = 4;
-        $Annonces = Annonce::where('status', 'Accepter')->paginate($paginateTerm);
+
+        $Annonces = Annonce::where([['status', '=', 'Accepter'], ['soft_delete', '=', false]])
+                        ->paginate($paginateTerm);
+
+        foreach ($Annonces as $annonce) {
+            $annonce->is_favorited = $annonce->touristes()->where('touriste_id', $userId)->exists();
+        }
+        
         return view('touriste.Annonces.index', compact('Annonces', 'paginateTerm'));
     }
 
@@ -143,13 +152,5 @@ class AnnonceController extends Controller
         $annonce->save();
 
         return redirect()->route('owner.dashboard');
-    }
-
-    public function favoris(Request $request)
-    {
-        $Annonce = Annonce::find($request->id);
-
-        $Annonce->touriste()->attach(Auth::id());
-        return redirect()->route('annonces.index');
     }
 }
