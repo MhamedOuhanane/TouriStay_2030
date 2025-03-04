@@ -29,6 +29,11 @@ class Annonce extends Model
     {
         return $this->belongsTo(Proprietaire::class);
     }
+    
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 
     public function formatDate($date, $format)
     {

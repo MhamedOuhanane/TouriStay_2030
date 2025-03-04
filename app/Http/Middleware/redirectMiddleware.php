@@ -20,22 +20,22 @@ class redirectMiddleware
             return redirect()->route('login');
         }
 
-        switch ($role) {
-            case session('role'):
-                return $next($request);
-                break;
+        if ($role != session('role')) {
+            switch ($role) {
+                case 'admine':
+                    return redirect()->route('admine.dashboard');
+                    break;
+                       
+                case 'proprietaire':
+                    return redirect()->route('owner.dashboard');
+                    break;
                 
-            case 'admine':
-                return redirect()->route('admine.dashboard');
-                break;
-                   
-            case 'proprietaire':
-                return redirect()->route('owner.dashboard');
-                break;
-            
-            default:
-                return redirect()->route('home');
-                break;
+                default:
+                    return redirect()->route('home');
+                    break;
+            }
         }
+
+        return $next($request);
     }
 }
