@@ -16,7 +16,8 @@
         </div>
         <div class="flex items-center space-x-4">
             <a href="{{ route('touriste.profile') }}" class="flrx items-center hover:text-green-500"><i class="fas fa-user-circle text-2xl mr-1"></i> Profile</a>
-            {{-- <form method="POST" action="{{ route('logout') }}" class="relative">
+            
+            <form method="POST" action="{{ route('logout') }}" class="relative">
                 @csrf
                 <label class="flex cursor-pointer items-center space-x-2 border border-white rounded-full py-1 gap-2 px-3 hover:bg-green-400";
                 for="loguot" > 
@@ -26,7 +27,7 @@
                 <x-text-input id="loguot" 
                                 class="hidden "
                                 type="submit"/>
-            </form> --}}
+            </form>
         </div>
     </div>
 </nav>

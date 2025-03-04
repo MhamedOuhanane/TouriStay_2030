@@ -23,13 +23,13 @@ Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function 
     Route::post('/annonces', [AnnonceController::class, 'filtrage'])->name('Annonce.filtrage');
     Route::get('/profile.touriste', [TouristeController::class, 'edit'])->name('touriste.profile');
     Route::post('/annonce.favoris', [AnnonceController::class, 'favoris'])->name('annonce.favoris');
-    Route::patch('/profile.touriste', [TouristeController::class, 'edit'])->name('touriste.profile.update');
+    Route::patch('/profile.touriste', [TouristeController::class, 'update'])->name('touriste.profile.update');
 });
 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {
-    Route::get('/dashboard', [ProprietaireController::class, 'index'])->name('owner.dashboard');
-    Route::post('/dashboard', [AnnonceController::class, 'store'])->name('dashboard.store');
-    Route::delete('/dashboard', [AnnonceController::class, 'destroy'])->name('annonce.SoftDelete');
+    Route::get('/dashboard.owner', [ProprietaireController::class, 'index'])->name('owner.dashboard');
+    Route::post('/dashboard.owner', [AnnonceController::class, 'store'])->name('dashboard.store');
+    Route::delete('/dashboard.owner', [AnnonceController::class, 'destroy'])->name('annonce.SoftDelete');
     Route::get('/Annonces.edit', [AnnonceController::class, 'edit'])->name('annonce.edit');
     Route::patch('/Annonces.update', [AnnonceController::class, 'update'])->name('annonce.update');
     Route::get('/Annonces', [AnnonceController::class, 'create'])->name('annonce.create');
