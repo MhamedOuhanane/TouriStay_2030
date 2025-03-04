@@ -20,7 +20,7 @@ class Annonce extends Model
         'soft_delete',
     ];
 
-    public function touriste()
+    public function touristes()
     {
         return $this->belongsToMany(Touriste::class);
     }
