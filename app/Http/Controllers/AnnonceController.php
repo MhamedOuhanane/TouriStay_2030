@@ -94,7 +94,7 @@ class AnnonceController extends Controller
      */
     public function show(Annonce $annonce)
     {
-        //
+        return view('touriste.Annonces.show', compact('annonce'));
     }
 
     /**

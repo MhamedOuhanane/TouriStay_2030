@@ -25,6 +25,7 @@ Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function 
     Route::get('/profile.touriste', [TouristeController::class, 'edit'])->name('touriste.profile');
     Route::patch('/profile.touriste', [TouristeController::class, 'update'])->name('touriste.profile.update');
     Route::post('/annonce.favoris/{annonce}', [FavorisController::class, 'store'])->name('annonce.favoris');
+    Route::get('/annonces/{annonce}', [AnnonceController::class, 'show'])->name('annonce.show');
 });
 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {
