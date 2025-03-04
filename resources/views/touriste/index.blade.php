@@ -22,9 +22,6 @@
                                 <option>Lisbonne, Portugal</option>
                                 <option>Porto, Portugal</option>
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
                         </div>
                     </div>
                     
@@ -43,9 +40,6 @@
                                 <option>4 voyageurs</option>
                                 <option>5+ voyageurs</option>
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
                         </div>
                     </div>
                     

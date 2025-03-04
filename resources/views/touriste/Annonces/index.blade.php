@@ -63,9 +63,8 @@
                     <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
                         <div class="relative">
                             <img src="{{ asset('storage/' . $annonce->photo) }}" alt="Appartement à Casablanca" class="w-full h-48 object-cover">
-                            <form action="{{ route('annonce.favoris') }}" method="POST">
+                            <form action="{{ route('annonce.favoris', ['id' => $annonce->id]) }}" method="POST">
                                 @csrf
-                                <input type="text" name="id" value="{{ $annonce->id }}">
                                 <button type="submit" class="absolute top-4 right-4 bg-white/70 backdrop-blur-sm p-2 rounded-full hover:bg-white transition">
                                     <i class="far fa-heart text-red-500"></i>
                                 </button>

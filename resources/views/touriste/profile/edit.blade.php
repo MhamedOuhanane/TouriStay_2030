@@ -1,6 +1,6 @@
 <x-master-layout>
 <!-- Main Content -->
-<div class="pt-8 pb-16">
+<div class="pt-12 pb-16">
     <div class="container mx-auto px-4">
         
         <!-- Profile Header -->
