@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProprietaireController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TouristeController;
 use App\Models\Role;
@@ -26,6 +27,7 @@ Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function 
     Route::patch('/profile.touriste', [TouristeController::class, 'update'])->name('touriste.profile.update');
     Route::post('/annonce.favoris/{annonce}', [FavorisController::class, 'store'])->name('annonce.favoris');
     Route::get('/annonces/{annonce}', [AnnonceController::class, 'show'])->name('annonce.show');
+    Route::get('/reservation/{annonce}', [ReservationController::class, 'create'])->name('reservation.form');
 });
 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {

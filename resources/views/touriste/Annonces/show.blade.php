@@ -78,7 +78,7 @@
                             <span class="text-2xl font-bold text-gray-800">{{ $annonce->prix }} MAD</span>
                             <span class="text-gray-600 ml-1">/ nuit</span>
                         </div>
-                        <a href="#reservation" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">
+                        <a href="{{ route('reservation.form',$annonce) }}" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">
                             Réserver maintenant
                         </a>
                     </div>

@@ -10,4 +10,9 @@ class Touriste extends User
     {
         return $this->belongsToMany(Annonce::class);
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
