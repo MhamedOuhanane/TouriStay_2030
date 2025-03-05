@@ -4,15 +4,14 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Réservation</h2>
             <div class="max-w-2xl mx-auto bg-green-50 rounded-xl p-8 shadow-md">
-                <form action=" " method="POST" id="reservationForm" class="space-y-6">
+                <form action=" {{ route('reservation.store') }}" method="POST" id="reservationForm" class="space-y-6">
                     @csrf
-                    <input type="hidden" name="annonce_id" value="{{ $annonce->id }}">
 
-                    
-                    <div class="result block text-gray-700 font-medium mb-2"  id="result">Aucune date sélectionnée</div>                   
-                    <div class="input-group flex gap-3">
-                        <input type="text" id="start_date" class="date-picker" placeholder="  Sélectionner une date" />
-                        <input type="text" id="end_date" class="date-picker" placeholder="  Sélectionner une date" />
+                    <div class="result block text-gray-700 font-medium mb-2"  id="result">
+                        Date de disponibilité : {{ $annonce->start_date . " -> " . $annonce->end_date }}
+                    </div>                   
+                    <div class="input-group">
+                        <input type="text" name="daterange" value="" />
                     </div>
                     
                     <div class="bg-white rounded-lg p-6 shadow-sm">
@@ -40,20 +39,20 @@
                     
                     <div>
                         <label class="block text-gray-700 font-medium mb-2">Méthode de paiement</label>
-                        <div class="grid grid-cols-3 gap-4">
+                        {{-- <div class="grid grid-cols-3 gap-4">
                             @php
                                 $methodesPaiement = [
-                                    ['icon' => 'fa-paypal', 'value' => 'paypal', 'label' => 'PayPal', 'color' => 'blue-600'],
+                                    ['icon' => 'fab fa-paypal', 'value' => 'paypal', 'label' => 'PayPal', 'color' => 'blue-600'],
                                 ];
                             @endphp
                             @foreach($methodesPaiement as $methode)
                                 <label class="border rounded-lg p-4 text-center hover:bg-green-50 transition cursor-pointer">
                                     <input type="radio" name="paiement" value="{{ $methode['value'] }}" class="hidden" required>
-                                    <i class="fas {{ $methode['icon'] }} text-2xl mb-2 text-{{ $methode['color'] }}"></i>
+                                    <i class="{{ $methode['icon'] }} text-2xl mb-2 text-{{ $methode['color'] }}"></i>
                                     <span class="block text-sm">{{ $methode['label'] }}</span>
                                 </label>
                             @endforeach
-                        </div>
+                        </div> --}}
                     </div>
                     
                     <button 
@@ -68,76 +67,38 @@
     </section>
 
     @push('scripts')
-    {{-- <script>
+    
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const dateArrivee = document.getElementById('dateArrivee');
-            const dateDepart = document.getElementById('dateDepart');
-            const nombreNuitsSpan = document.getElementById('nombreNuits');
-            const prixTotalSpan = document.getElementById('prixTotal');
-            const prixNuit = {{ $annonce->prix }};
-            const fraisService = 500;
-
-            function calculateNights() {
-                if (dateArrivee.value && dateDepart.value) {
-                    const arrivee = new Date(dateArrivee.value);
-                    const depart = new Date(dateDepart.value);
-                    
-                    if (depart <= arrivee) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Dates invalides',
-                            text: 'La date de départ doit être après la date d\'arrivée'
-                        });
-                        dateDepart.value = '';
-                        return;
+            reservationDates = [
+                @foreach($annonce->reservations as $reservation)
+                    "{{ Carbon\Carbon::parse($reservation->start_date)->format("m/d/Y") . " - " .  Carbon\Carbon::parse($reservation->end_date)->format("m/d/Y")}}" ,
+                @endforeach
+            ];
+            resDates = [];
+            $.map(reservationDates, function (element) {
+                element = element.split(" - ")
+                element = $.map(element, function(el){
+                    return Date.parse(el);
+                });
+                resDates.push(element);
+            });
+            
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left',
+                minDate: "{{Carbon\Carbon::parse($annonce->start_date)->format("m/d/Y")}}",
+                maxDate: "{{Carbon\Carbon::parse($annonce->end_date)->format("m/d/Y")}}",
+                isInvalidDate: function(date) {
+                    for(resDate of resDates){
+                        if(date <= resDate[1] && date >=resDate[0]){
+                            return true;
+                        }
                     }
-
-                    const timeDiff = depart.getTime() - arrivee.getTime();
-                    const nombreNuits = Math.ceil(timeDiff / (1000 * 3600 * 24));
-                    
-                    nombreNuitsSpan.textContent = nombreNuits + ' nuit(s)';
-                    
-                    const prixTotal = (nombreNuits * prixNuit) + fraisService;
-                    prixTotalSpan.textContent = prixTotal.toLocaleString() + ' MAD';
-                }
-            }
-
-            dateArrivee.addEventListener('change', calculateNights);
-            dateDepart.addEventListener('change', calculateNights);
-
-            // Form validation
-            document.getElementById('reservationForm').addEventListener('submit', function(e) {
-                const methodesPaiement = document.querySelectorAll('input[name="paiement"]');
-                const isPaiementSelected = Array.from(methodesPaiement).some(radio => radio.checked);
-
-                if (!isPaiementSelected) {
-                    e.preventDefault();
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Méthode de paiement',
-                        text: 'Veuillez sélectionner une méthode de paiement'
-                    });
                 }
             });
-        });
-    </script> --}}
-    <script>
-         var picker = new Lightpick({
-            field: document.getElementById('start_date'),
-            secondField: document.getElementById('end_date'),
-            singleDate: false,
-            onSelect: function(start, end){
-                var str = '';
-                str += start ? start.format('Do MMMM YYYY') + ' إلى ' : '';
-                str += end ? end.format('Do MMMM YYYY') : '...';
-                document.getElementById('result-3').innerHTML = str;
-            }
+            
         });
 
-        // Reset function for clearing the selected dates
-        function resetSelection() {
-            document.getElementById('start_date').value = '';
-            document.getElementById('result').innerHTML = 'Aucune date sélectionnée';
-        }
     </script>
+    
 </x-master-layout>
