@@ -21,7 +21,7 @@ class redirectMiddleware
         }
 
         if ($role != session('role')) {
-            switch ($role) {
+            switch (session('role')) {
                 case 'admine':
                     return redirect()->route('admine.dashboard');
                     break;
@@ -36,6 +36,8 @@ class redirectMiddleware
             }
         }
 
+
+        
         return $next($request);
     }
 }
