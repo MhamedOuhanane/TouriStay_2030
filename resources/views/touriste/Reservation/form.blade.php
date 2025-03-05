@@ -7,70 +7,12 @@
                 <form action=" " method="POST" id="reservationForm" class="space-y-6">
                     @csrf
                     <input type="hidden" name="annonce_id" value="{{ $annonce->id }}">
+
                     
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Date d'arrivée</label>
-                            <div class="relative">
-                                <input 
-                                    type="date" 
-                                    name="date_arrivee" 
-                                    id="dateArrivee"
-                                    min="{{ now()->format('Y-m-d') }}"
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                                >
-                                <i class="fas fa-calendar absolute right-4 top-4 text-gray-400"></i>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Date de départ</label>
-                            <div class="relative">
-                                <input 
-                                    type="date" 
-                                    name="date_depart" 
-                                    id="dateDepart"
-                                    required
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                                >
-                                <i class="fas fa-calendar absolute right-4 top-4 text-gray-400"></i>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Nombre de personnes</label>
-                            <div class="relative">
-                                <select 
-                                    name="nombre_personnes" 
-                                    id="nombrePersonnes"
-                                    required
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                                >
-                                    @for($i = 1; $i <= 6; $i++)
-                                        <option value="{{ $i }}">{{ $i }} personne(s)</option>
-                                    @endfor
-                                </select>
-                                <i class="fas fa-users absolute right-4 top-4 text-gray-400"></i>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-gray-700 font-medium mb-2">Type de chambre</label>
-                            <div class="relative">
-                                <select 
-                                    name="type_chambre" 
-                                    required
-                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                                >
-                                    <option value="standard">Chambre Standard</option>
-                                    <option value="deluxe">Chambre Deluxe</option>
-                                    <option value="suite">Suite</option>
-                                </select>
-                                <i class="fas fa-bed absolute right-4 top-4 text-gray-400"></i>
-                            </div>
-                        </div>
+                    <div class="result block text-gray-700 font-medium mb-2"  id="result">Aucune date sélectionnée</div>                   
+                    <div class="input-group flex gap-3">
+                        <input type="text" id="start_date" class="date-picker" placeholder="  Sélectionner une date" />
+                        <input type="text" id="end_date" class="date-picker" placeholder="  Sélectionner une date" />
                     </div>
                     
                     <div class="bg-white rounded-lg p-6 shadow-sm">
@@ -85,7 +27,7 @@
                                 <span id="nombreNuits" class="font-medium">-</span>
                             </div>
                             <div class="flex justify-between">
-                                <span class="text-gray-600">Frais de service</span>
+                                <span class="text-gray-600">Frais de service (<span class="text-red-400">15%</span>)</span>
                                 <span class="font-medium">500 MAD</span>
                             </div>
                             <hr class="border-t border-gray-200">
@@ -101,9 +43,7 @@
                         <div class="grid grid-cols-3 gap-4">
                             @php
                                 $methodesPaiement = [
-                                    ['icon' => 'fa-credit-card', 'value' => 'carte', 'label' => 'Carte de crédit', 'color' => 'green-600'],
                                     ['icon' => 'fa-paypal', 'value' => 'paypal', 'label' => 'PayPal', 'color' => 'blue-600'],
-                                    ['icon' => 'fa-university', 'value' => 'virement', 'label' => 'Virement', 'color' => 'gray-600']
                                 ];
                             @endphp
                             @foreach($methodesPaiement as $methode)
@@ -128,7 +68,7 @@
     </section>
 
     @push('scripts')
-    <script>
+    {{-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const dateArrivee = document.getElementById('dateArrivee');
             const dateDepart = document.getElementById('dateDepart');
@@ -180,5 +120,24 @@
                 }
             });
         });
+    </script> --}}
+    <script>
+         var picker = new Lightpick({
+            field: document.getElementById('start_date'),
+            secondField: document.getElementById('end_date'),
+            singleDate: false,
+            onSelect: function(start, end){
+                var str = '';
+                str += start ? start.format('Do MMMM YYYY') + ' إلى ' : '';
+                str += end ? end.format('Do MMMM YYYY') : '...';
+                document.getElementById('result-3').innerHTML = str;
+            }
+        });
+
+        // Reset function for clearing the selected dates
+        function resetSelection() {
+            document.getElementById('start_date').value = '';
+            document.getElementById('result').innerHTML = 'Aucune date sélectionnée';
+        }
     </script>
 </x-master-layout>
