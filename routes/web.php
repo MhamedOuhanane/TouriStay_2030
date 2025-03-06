@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProprietaireController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TouristeController;
 use App\Models\Role;
 use App\Models\User;
@@ -28,7 +29,10 @@ Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function 
     Route::post('/annonce.favoris/{annonce}', [FavorisController::class, 'store'])->name('annonce.favoris');
     Route::get('/annonces/{annonce}', [AnnonceController::class, 'show'])->name('annonce.show');
     Route::get('/reservation/{annonce}', [ReservationController::class, 'create'])->name('reservation.form');
-    Route::post('/touriste.reservation/{id}', [ReservationController::class, 'store'])->name('reservation.store');
+    Route::post('/touriste.reservation/{id}', [ReservationController::class, 'redirect'])->name('reservation.redirect');
+    Route::get('/touriste.reservation', [ReservationController::class, 'store'])->name('reservation.store');
+
+    Route::get('/touriste.reservation.stripe', [StripeController::class, 'checkout'])->name('reservation.stripe');
 });
 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {
