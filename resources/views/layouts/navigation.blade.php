@@ -48,15 +48,16 @@
                     <x-slot name="content">
 
                         @foreach ($roles as $role)
-                            <x-dropdown-link :href=" route('session.role', ['role' => $role->name]) " :active="request()->routeIs($dashboard) || request()->routeIs($profile)">
+                            <x-dropdown-link :href=" route('session.role', ['role' => $role->name]) " :active="request()->routeIs($dashboard) || request()->routeIs($profile)"
+                                class="{{ $role->name == session('role') ? 'text-green-600' : '' }}">
                                 {{ __($role->name) }}
                             </x-dropdown-link>
                         @endforeach
 
+                        <hr class="w-[90%] ml-2">
                         <x-dropdown-link :href="route($profile)">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

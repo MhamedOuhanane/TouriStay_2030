@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admine;
 use App\Models\client_test;
 use App\Models\Proprietaire;
 use App\Models\Role;

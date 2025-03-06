@@ -28,7 +28,7 @@ Route::middleware('auth', 'role:touriste', 'redirect:touriste')->group(function 
     Route::post('/annonce.favoris/{annonce}', [FavorisController::class, 'store'])->name('annonce.favoris');
     Route::get('/annonces/{annonce}', [AnnonceController::class, 'show'])->name('annonce.show');
     Route::get('/reservation/{annonce}', [ReservationController::class, 'create'])->name('reservation.form');
-    Route::post('/touriste.reservation', [ReservationController::class, 'store'])->name('reservation.store');
+    Route::post('/touriste.reservation/{id}', [ReservationController::class, 'store'])->name('reservation.store');
 });
 
 Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(function () {
