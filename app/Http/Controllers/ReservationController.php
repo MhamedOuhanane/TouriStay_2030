@@ -7,6 +7,7 @@ use App\Models\Annonce;
 use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -29,7 +30,22 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ReservationRequest $request, $id)
+    public function store(Request $request)
+    {
+        $reservation = new Reservation();
+
+        $reservation->start_date = session('reservation')['start_date'];
+        $reservation->end_date = session('reservation')['end_date'];
+        $reservation->prix_totale = session('reservation')['prix'];
+        $reservation->touriste_id = Auth::id();
+        $reservation->annonce_id = session('reservation')['annonceId'];
+
+        $reservation->save();
+
+        return redirect()->route('annonce.show',session('reservation')['annonceId']);
+    }
+
+    public function redirect(ReservationRequest $request, $id)
     {
         $request->validated();
         $duration = explode(" - ", $request->daterange);
@@ -38,11 +54,13 @@ class ReservationController extends Controller
         
         $reservation = [
             'annonceId' => $id,
-            'prixTotal' => $request->prixTotal,
+            'prix' => $request->prixTotal,
             'start_date' => $start_date,
             'end_date' => $end_date,
         ];
         session(['reservation' => $reservation]);
+        
+        return redirect()->route('reservation.stripe');
     }
 
     /**

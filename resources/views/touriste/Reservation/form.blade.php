@@ -4,7 +4,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Réservation</h2>
             <div class="max-w-2xl mx-auto bg-green-50 rounded-xl p-8 shadow-md">
-                <form action=" {{ route('reservation.store',$annonce->id) }}" method="POST" id="reservationForm" class="space-y-6">
+                <form action=" {{ route('reservation.redirect', $annonce->id) }}" method="POST" id="reservationForm" class="space-y-6">
                     @csrf
 
                     <div class="result block text-gray-700 font-medium mb-2"  id="result">
@@ -32,9 +32,8 @@
                             <hr class="border-t border-gray-200">
                             <div class="flex justify-between text-lg font-bold">
                                 <span>Total</span>
-                                <div>
-                                    <input id="prixTotal" type="number" name="prixTotal" value="" disabled class="w-20"><span>MAD</span>
-                                </div>
+                                <span id="prixTotal"></span>
+                                <input id="prixTotalInput" type="text" name="prixTotal" class="hidden">
                             </div>
                         </div>
                     </div>
@@ -102,7 +101,8 @@
             let total = (parseFloat(prix) + parseFloat(servicePrix)).toFixed(2);
             
             $('#servicePrix').html(servicePrix + " MAD");
-            $('#prixTotal').val(total);
+            $('#prixTotal').html(total + " MAD");
+            $('#prixTotalInput').val(total);
         }
 
     </script>
