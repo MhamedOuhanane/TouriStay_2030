@@ -8,8 +8,7 @@
             </div>
             <div class="ml-4">
                 <h3 class="text-gray-500 text-sm">Utilisateurs</h3>
-                <p class="text-2xl font-bold">15,842</p>
-                <p class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 12.5%</p>
+                <p class="text-2xl font-bold">{{ count($Users) }}</p>
             </div>
         </div>
     </div>
@@ -20,8 +19,7 @@
             </div>
             <div class="ml-4">
                 <h3 class="text-gray-500 text-sm">Réservations</h3>
-                <p class="text-2xl font-bold">2,845</p>
-                <p class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 8.3%</p>
+                <p class="text-2xl font-bold">{{ count($Reservations) }}</p>
             </div>
         </div>
     </div>
@@ -32,8 +30,7 @@
             </div>
             <div class="ml-4">
                 <h3 class="text-gray-500 text-sm">Revenus</h3>
-                <p class="text-2xl font-bold">487,290€</p>
-                <p class="text-green-500 text-sm"><i class="fas fa-arrow-up"></i> 15.2%</p>
+                <p class="text-2xl font-bold">{{ $totalRevenus }} MAD</p>
             </div>
         </div>
     </div>
