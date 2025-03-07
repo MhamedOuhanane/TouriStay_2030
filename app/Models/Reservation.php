@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
@@ -22,5 +23,10 @@ class Reservation extends Model
     public function annonce()
     {
         return $this->belongsTo(Annonce::class);
+    }
+
+    public function formatDate($date, $format)
+    {
+        return Carbon::parse($date)->format($format);
     }
 }

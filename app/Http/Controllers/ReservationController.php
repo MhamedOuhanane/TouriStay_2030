@@ -16,7 +16,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = Reservation::with(['touriste', 'annonce'])->get();
+        return view('proprietaire.reservation.index', compact('reservations'));
     }
 
     /**
