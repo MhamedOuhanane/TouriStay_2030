@@ -1,66 +1,107 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Voici un **cahier des charges** sous forme de fichier README pour le projet **TouriStay 2030** :
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+# **TouriStay 2030**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+TouriStay 2030 est une plateforme dédiée à la location de maisons et d'appartements pour les touristes venant assister aux événements du **Mondial 2030 "Morocco-Spain-Portugal"**. Le projet vise à créer une solution simple et rapide pour faciliter la réservation d’hébergement pendant la période de l’événement.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## **Contexte du projet**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Le Mondial 2030 aura lieu dans trois pays : le Maroc, l'Espagne et le Portugal. En prévision de cet événement, il est essentiel de mettre en place une plateforme fiable pour la location de logements. **TouriStay 2030** permet aux propriétaires de publier leurs annonces et aux touristes de trouver facilement un hébergement adapté à leurs besoins.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## **Objectif du projet**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+L’objectif est de poser les bases de la plateforme, en commençant par l'authentification des utilisateurs, la gestion des annonces et la recherche d'hébergements. La plateforme offrira une interface sécurisée et fonctionnelle pour les propriétaires et les touristes.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## **PHASE 1**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### **User Stories**
 
-### Premium Partners
+- **Authentification sécurisée :**  
+  En tant qu'utilisateur (propriétaire ou touriste), je veux pouvoir m’inscrire sur la plateforme et m’authentifier en toute sécurité pour accéder à mon espace personnel.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- **Gestion du profil utilisateur :**  
+  En tant qu’utilisateur, je veux pouvoir consulter mon profil et modifier mes informations personnelles.
 
-## Contributing
+- **Gestion des annonces pour les propriétaires :**  
+  En tant que propriétaire, je veux pouvoir publier une annonce en indiquant la localisation, le prix, les équipements et les disponibilités.  
+  En tant que propriétaire, je veux pouvoir modifier ou supprimer mes annonces pour garder mon offre à jour.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Recherche d’hébergements pour les touristes :**  
+  En tant que touriste, je veux pouvoir explorer les différentes offres d’hébergement avec une pagination dynamique, permettant de choisir le nombre d’annonces affichées par page (4, 10, 25).  
+  En tant que touriste, je veux pouvoir rechercher des hébergements par ville et date de disponibilité pour trouver un logement adapté à mon séjour.
 
-## Code of Conduct
+- **Favoris pour les touristes :**  
+  En tant que touriste, je veux pouvoir enregistrer des annonces en favoris pour les retrouver facilement plus tard.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Gestion des annonces par l’administrateur :**  
+  En tant qu’administrateur, je veux pouvoir supprimer des annonces inappropriées ou frauduleuses pour garantir la sécurité de la plateforme.
 
-## Security Vulnerabilities
+- **Statistiques pour l’administrateur :**  
+  En tant qu’administrateur, je veux avoir une section de statistiques pour suivre le nombre d’inscriptions, de locations et d’annonces actives.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+### **Fonctionnalités techniques**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Authentification sécurisée** avec Laravel.
+- **CRUD (Create, Read, Update, Delete)** pour gérer les annonces.
+- **Système de recherche avancé** (filtres par ville et par date).
+- **Gestion des profils utilisateurs.**
+- **Interface simple et responsive** pour une expérience utilisateur fluide.
+
+---
+
+## **PHASE 2**
+
+### **User Stories**
+
+- **Gestion des dates pour les touristes :**  
+  En tant que touriste, je veux pouvoir choisir mes dates d’arrivée et de départ via un calendrier interactif, en affichant uniquement les disponibilités mises à jour en temps réel.
+
+- **Gestion des périodes de disponibilité pour les propriétaires :**  
+  En tant que propriétaire, je veux pouvoir gérer mes périodes de disponibilité et suivre mes réservations.
+
+- **Notifications pour les propriétaires :**  
+  En tant que propriétaire, je veux être notifié lorsqu’un touriste effectue une réservation sur l’un de mes hébergements.
+
+- **Système de paiement sécurisé pour les touristes :**  
+  En tant que touriste, je veux pouvoir payer ma réservation directement sur la plateforme via un système sécurisé (Stripe ou PayPal en mode test).
+
+- **Confirmation de réservation par email :**  
+  En tant que touriste, je veux recevoir un email de confirmation après paiement, contenant le récapitulatif de ma réservation et les coordonnées du propriétaire.
+
+- **Téléchargement de la facture après paiement :**  
+  En tant que touriste, je veux pouvoir télécharger ma facture après paiement, contenant le récapitulatif de ma réservation et les coordonnées du propriétaire.
+
+- **Tableau de bord pour l’administrateur :**  
+  En tant qu’administrateur, je veux pouvoir suivre les paiements et les réservations sur un tableau de bord.
+
+---
+
+### **Fonctionnalités techniques**
+
+- **Gestion des dates** avec Carbon pour s’assurer que les réservations ne se chevauchent pas.
+- **Validation avancée des champs backend** (dates, email, numéro de téléphone, etc.).
+- **Intégration de Stripe ou PayPal** pour un paiement sécurisé.
+- **Envoi automatique d’emails de confirmation** après une réservation.
+- **Mise en place d’un tableau de bord** pour le suivi des réservations et paiements.
+
+---
+
+## **Technologies utilisées**
+
+- **Framework :** Laravel
+- **Base de données :** MySQL / PostgreSQL
+- **Système de paiement :** Stripe / PayPal
+- **Librairie de gestion des dates :** Carbon
+- **Gestion des emails :** Mailtrap / SMTP
+- **PDF :** FPDF pour la génération de factures
+
+---
+
