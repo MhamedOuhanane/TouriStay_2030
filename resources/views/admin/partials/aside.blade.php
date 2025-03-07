@@ -12,7 +12,7 @@
                     <span>Tableau de bord</span>
                 </a>
             </div>
-            <a href="" class="flex items-center p-3 {{ request()->routeIs('reservations.admin') ? 'bg-emerald-800' : 'hover:bg-emerald-800'}} rounded-lg mb-3">
+            <a href="{{ route('annonce.admin') }}" class="flex items-center p-3 {{ request()->routeIs('annonce.admin') ? 'bg-emerald-800' : 'hover:bg-emerald-800'}} rounded-lg mb-3">
                 <i class="fas fa-hotel mr-3"></i>
                 <span>Hébergements</span>
             </a>

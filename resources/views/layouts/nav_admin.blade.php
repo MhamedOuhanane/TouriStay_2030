@@ -34,9 +34,6 @@
                     @endforeach
 
                     <hr class="w-[90%] ml-2">
-                    <x-dropdown-link :href="route('owner.profile')">
-                        {{ __('Profile') }}
-                    </x-dropdown-link>
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
