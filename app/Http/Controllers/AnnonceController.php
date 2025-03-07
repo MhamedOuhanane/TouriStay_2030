@@ -132,9 +132,7 @@ class AnnonceController extends Controller
             
                 $photoPath = $request->file('photo')->store('photos', 'public');
                 $annonce->photo = $photoPath;
-            } else {
-                $annonce->photo =  'photos/annonceDefoult.png';
-            }
+            } 
         }
 
         $annonce->save();        

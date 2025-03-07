@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservationRequest;
 use App\Models\Annonce;
+use App\Models\Proprietaire;
 use App\Models\Reservation;
+use App\Models\Touriste;
+use App\Models\User;
+use App\Notifications\ReserveNotificate;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
@@ -40,8 +46,15 @@ class ReservationController extends Controller
         $reservation->prix_totale = session('reservation')['prix'];
         $reservation->touriste_id = Auth::id();
         $reservation->annonce_id = session('reservation')['annonceId'];
+        $reservation->reference = 'TS30' . strtoupper(Str::random(10));
 
         $reservation->save();
+
+        $user = User::find($reservation->touriste_id);
+        $owner = Annonce::find($reservation->annonce_id)->proprietaire;
+
+        $user->notify(new ReserveNotificate($reservation));
+        $owner->notify(new ReserveNotificate($reservation));
 
         return redirect()->route('annonce.show',session('reservation')['annonceId']);
     }
