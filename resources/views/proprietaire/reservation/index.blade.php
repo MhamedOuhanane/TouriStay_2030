@@ -14,7 +14,7 @@
                     <h2 class="text-lg font-medium text-gray-900">
                         Mes Réservation
                     </h2>
-                
+                </div>
                 
                 <!-- Properties Listing Table -->
                 <div class="p-6">
@@ -26,10 +26,10 @@
                                         ID
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Property
+                                        Touriste
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Touriste
+                                        Property
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Titre
@@ -38,19 +38,19 @@
                                         Price
                                     </th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Availability
+                                        Durée
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        End date
+                                    </th> --}}
+                                    {{-- <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Actions
-                                    </th>
+                                    </th> --}}
                                 </tr>
                             </thead>
-                            {{-- <tbody class="bg-white divide-y divide-gray-200">
+                            <tbody class="bg-white divide-y divide-gray-200">
                                 <!-- Property Row 1 -->
-                                @foreach ($Annonces as $item)
+                                @foreach ($reservations as $item)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $item->id }}
@@ -58,51 +58,40 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="h-10 w-10 flex-shrink-0 rounded-md overflow-hidden">
-                                                    <img src="{{ asset('storage/'. $item->photo) }}" alt="Property image" class="h-10 w-10 object-cover">
+                                                    <img src="{{ asset('storage/'. $item->touriste->photo) }}" alt="Touriste image" class="h-10 w-10 object-cover">
                                                 </div>
                                                 <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900 truncate max-w-xs">{{ $item->title }}</div>
+                                                    <div class="text-sm font-medium text-gray-900 truncate max-w-xs">{{ $item->touriste->getFullNameAttribute() }}</div>
+                                                    <div class="text-xs font-medium text-gray-900 truncate max-w-xs">{{ $item->touriste->email }}</div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">{{ $item->location }}, {{ $item->country }}</div>
+                                            <div class="flex items-center">
+                                                <div class="h-10 w-10 flex-shrink-0 rounded-md overflow-hidden">
+                                                    <img src="{{ asset('storage/'. $item->annonce->photo) }}" alt="Property image" class="h-10 w-10 object-cover">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900 truncate max-w-xs">{{ $item->annonce->title }}</div>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="text-sm text-gray-900">${{ $item->prix }}</div>
+                                            <div class="text-sm text-gray-900">{{ $item->annonce->location }}, {{ $item->annonce->Country }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">${{ $item->prix_totale }}</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="text-sm text-gray-900">{{ $item->formatDate($item->start_date, 'F j') }} - {{ $item->formatDate($item->end_date, 'F j') }}, 2030</div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $colour[$item->status] }}">
-                                                {{ $item->status }}
-                                            </span>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <div class="flex space-x-2">
-                                                <form action="{{ route('annonce.edit') }}" method="get">
-                                                    @csrf
-                                                    <input type="text" name="id" value="{{ $item->id }}" class="hidden">
-                                                    <button type="submit" class="edit-btn text-blue-600 hover:text-blue-900">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                </form>
-
-                                                <form action="{{ route('annonce.SoftDelete') }}" method="POST">
-                                                    @csrf   
-                                                    @method('delete')
-                                                    <input type="text" name="id" value="{{ $item->id }}" class="hidden">
-                                                    <button type="submit" class="soft-delete-btn text-red-600 hover:text-red-900">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                        
                                     </tr>
                                         
                                 @endforeach
-                            </tbody> --}}
+                            </tbody>
                         </table>
                     </div>
                 </div>

@@ -47,7 +47,7 @@ Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(f
     Route::delete('/profile', [ProprietaireController::class, 'destroy'])->name('owner.profile.destroy');
 
     
-    Route::post('/proprietaire.reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/proprietaire.reservation', [ReservationController::class, 'index'])->name('reservation.index');
 });
 
 Route::middleware('auth', 'role:admine', 'redirect:admine')->group(function () {
