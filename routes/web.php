@@ -52,6 +52,8 @@ Route::middleware('auth', 'role:proprietaire', 'redirect:proprietaire')->group(f
 
 Route::middleware('auth', 'role:admine', 'redirect:admine')->group(function () {
     Route::get('/dashboard.admine', [AdmineController::class, 'index'])->name('admine.dashboard');
+
+    Route::get('/admin.reservation', [ReservationController::class, 'index'])->name('reservations.admin');
 });
 
 
