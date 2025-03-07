@@ -14,10 +14,10 @@ class AdmineController extends Controller
      */
     public function index()
     {
-        $reservations = Reservation::all();
+        $Reservations = Reservation::all();
         $Users = User::distinct()->get();
-
-        return view('admin.dashboard', compact(''));
+        $totalRevenus = Reservation::sum('prix_totale');
+        return view('admin.dashboard', compact('Users', 'Reservations', 'totalRevenus'));
     }
 
     /**
