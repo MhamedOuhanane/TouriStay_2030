@@ -56,6 +56,8 @@ Route::middleware('auth', 'role:admine', 'redirect:admine')->group(function () {
 
     Route::get('/admin.reservation', [ReservationController::class, 'index'])->name('reservations.admin');
     Route::get('/admin.utilisateur', [UserController::class, 'index'])->name('utilisateurs.admin');
+    Route::get('/admin.annonce', [AnnonceController::class, 'index'])->name('annonce.admin');
+    Route::get('/admin.annonce.update/{annonce}', [AnnonceController::class, 'update'])->name('admine.annonce.update');
 });
 
 

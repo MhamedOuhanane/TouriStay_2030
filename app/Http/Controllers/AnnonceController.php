@@ -17,16 +17,28 @@ class AnnonceController extends Controller
     {
         $userId = Auth::id();
                 
-        $paginateTerm = 4;
+        if (session('role') == 'touriste') {
+            $paginateTerm = 4;
 
-        $Annonces = Annonce::where([['status', '=', 'Accepter'], ['soft_delete', '=', false]])
-                        ->paginate($paginateTerm);
+            $Annonces = Annonce::where([['status', '=', 'Accepter'], ['soft_delete', '=', false]])
+                            ->paginate($paginateTerm);
 
-        foreach ($Annonces as $annonce) {
-            $annonce->is_favorited = $annonce->touristes()->where('touriste_id', $userId)->exists();
+            foreach ($Annonces as $annonce) {
+                $annonce->is_favorited = $annonce->touristes()->where('touriste_id', $userId)->exists();
+            }
+            
+            return view('touriste.Annonces.index', compact('Annonces', 'paginateTerm'));
+
+        } elseif (session('role') == 'admine') {
+            $colour = [
+                'En Attente' => "bg-yellow-100 text-yellow-800", 
+                'Accepter' => "bg-green-100 text-green-800", 
+                'Refuser' => "bg-red-100 text-red-800"
+            ];
+
+            $Annonces = Annonce::where('soft_delete', 'false')->get();
+            return view('admin.annonce.index', compact('Annonces', 'colour'));
         }
-        
-        return view('touriste.Annonces.index', compact('Annonces', 'paginateTerm'));
     }
 
     public function filtrage(Request $request)
@@ -111,32 +123,40 @@ class AnnonceController extends Controller
      */
     public function update(Request $request, Annonce $annonce)
     {
-        $annonce = Annonce::find($request->id);
+        if (session('role') == 'proprietaire') {
+            $annonce = Annonce::find($request->id);
         
-        $validation = $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'location' => ['required', 'string', 'max:255'],
-            'Country' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
-            'prix' => ['required', 'numeric', 'min:0', 'max:10000'],
-            'start_date' => ['required', 'date', 'before_or_equal:end_date'], 
-            'end_date' => ['required', 'date', 'after_or_equal:start_date'], 
-        ]);
+            $validation = $request->validate([
+                'title' => ['required', 'string', 'max:255'],
+                'location' => ['required', 'string', 'max:255'],
+                'Country' => ['required', 'string', 'max:255'],
+                'description' => ['required', 'string', 'max:255'],
+                'prix' => ['required', 'numeric', 'min:0', 'max:10000'],
+                'start_date' => ['required', 'date', 'before_or_equal:end_date'], 
+                'end_date' => ['required', 'date', 'after_or_equal:start_date'], 
+            ]);
 
-        $annonce->fill($validation);
-        
-        $annonce->proprietaire_id = Auth::id();
-
-        if ($annonce->photo != $request->photo) {
-            if ($request->hasFile('photo')) {
+            $annonce->fill($validation);
             
-                $photoPath = $request->file('photo')->store('photos', 'public');
-                $annonce->photo = $photoPath;
-            } 
-        }
+            $annonce->proprietaire_id = Auth::id();
 
-        $annonce->save();        
-        return redirect()->route('owner.dashboard');
+            if ($annonce->photo != $request->photo) {
+                if ($request->hasFile('photo')) {
+                
+                    $photoPath = $request->file('photo')->store('photos', 'public');
+                    $annonce->photo = $photoPath;
+                } 
+            }
+
+            $annonce->save();        
+            return redirect()->route('owner.dashboard');
+        } else if (session('role') == 'admine') {
+            $annonce->status = $request->status;
+            $annonce->save();
+
+            return redirect()->route('annonce.admin');
+        }
+        
     }
 
     /**
