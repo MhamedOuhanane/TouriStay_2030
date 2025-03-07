@@ -16,13 +16,16 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.nav_admin')
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <div class="flex h-screen overflow-hidden">
+            @include('admin.partials.aside')
+            <!-- Main Content -->
+            <div class="flex-1 overflow-auto">
+                @include('layouts.nav_admin')
+                <!-- Content Wrapper -->
+                <main class="p-6">
+                    {{ $slot ?? '' }}
+                </main>
+            </div>
         </div>
     </body>
 </html>
