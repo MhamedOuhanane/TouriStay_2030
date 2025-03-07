@@ -52,7 +52,7 @@ class ReservationController extends Controller
 
         $user = User::find($reservation->touriste_id);
         $owner = Annonce::find($reservation->annonce_id)->proprietaire;
-        
+
         $user->notify(new ReserveNotificate($reservation));
         $owner->notify(new ReserveNotificate($reservation));
 

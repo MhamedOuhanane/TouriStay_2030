@@ -83,6 +83,7 @@
                                             </span>
                                         </td>
                                         @if (count($item->reservations) == 0 && $item->status == 'En Attente')
+                                        
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div class="flex space-x-2">
                                                     <form action="{{ route('annonce.edit') }}" method="get">
