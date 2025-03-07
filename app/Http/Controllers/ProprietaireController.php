@@ -7,6 +7,8 @@ use App\Models\Proprietaire;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class ProprietaireController extends Controller
@@ -15,8 +17,8 @@ class ProprietaireController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        
+    {   
+
         $roles = Auth::user()->roles;
         $colour = [
             'En Attente' => "bg-yellow-100 text-yellow-800", 
