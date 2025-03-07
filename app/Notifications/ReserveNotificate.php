@@ -38,14 +38,15 @@ class ReserveNotificate extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Bonjour ' . $this->reservation->touriste->name)
+            ->greeting('Bonjour ' . $this->reservation->touriste->getFullNameAttribute())
             ->line('Merci pour votre réservation.')
             ->line('Voici les détails de votre réservation :')
             ->line('Référence de réservation : ' . $this->reservation->reference)
             ->line('Date de réservation : ' . $this->reservation->created_at)
-            ->line('Hébergement : ' . $this->reservation->title)
-            ->line('Emplacement : ' . $this->reservation->location . ', ' . $this->reservation->Contry )
-            ->line('Montant payé : ' . $this->reservation->prix_totale)
+            ->line('Hébergement : ' . $this->reservation->annonce->title)
+            ->line('Durée : ' . $this->reservation->formatDate($this->reservation->start_date, 'F j') . ' - ' . $this->reservation->formatDate($this->reservation->end_date, 'F j') . ', 2030')
+            ->line('Emplacement : ' . $this->reservation->annonce->location . ', ' . $this->reservation->annonce->Country )
+            ->line('Montant payé : ' . $this->reservation->prix_totale . 'MAD')
             ->line('Merci de votre confiance !')
             // ->action('Voir votre réservation', url('/reservations/' . $this->reservation->id))
             ;
@@ -54,14 +55,18 @@ class ReserveNotificate extends Notification
     public function toOwnerMail($owner)
     {
         return (new MailMessage)
-            ->greeting('Bonjour ' . $owner->name)
+            ->greeting('Bonjour ' . $owner->getFullNameAttribute())
             ->line('Un touriste a réservé votre annonce.')
             ->line('Voici les détails de la réservation :')
             ->line('Référence de réservation : ' . $this->reservation->reference)
-            ->line('Nom du touriste : ' . $this->reservation->user->name)
+            ->line('Nom du touriste : ' . $this->reservation->touriste->getFullNameAttribute())
+            ->line('Hébergement : ' . $this->reservation->annonce->title)
+            ->line('Durée : ' . $this->reservation->formatDate($this->reservation->start_date, 'F j') . ' - ' . $this->reservation->formatDate($this->reservation->end_date, 'F j') . ', 2030')
+            ->line('Emplacement : ' . $this->reservation->annonce->location . ', ' . $this->reservation->annonce->Country )
             ->line('Montant payé : ' . $this->reservation->prix_totale)
             ->line('Merci de suivre cette réservation.')
-            ->action('Voir les réservations', url('/proprietaire/reservations/' . $this->reservation->id));
+            // ->action('Voir les réservations', url('/proprietaire/reservations/' . $this->reservation->id))
+            ;
     }
 
     /**

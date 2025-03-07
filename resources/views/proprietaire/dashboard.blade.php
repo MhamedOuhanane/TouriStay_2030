@@ -82,26 +82,38 @@
                                                 {{ $item->status }}
                                             </span>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <div class="flex space-x-2">
-                                                <form action="{{ route('annonce.edit') }}" method="get">
-                                                    @csrf
-                                                    <input type="text" name="id" value="{{ $item->id }}" class="hidden">
-                                                    <button type="submit" class="edit-btn text-blue-600 hover:text-blue-900">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                </form>
+                                        @if (count($item->reservations) == 0 && $item->status == 'En Attente')
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <div class="flex space-x-2">
+                                                    <form action="{{ route('annonce.edit') }}" method="get">
+                                                        @csrf
+                                                        <input type="text" name="id" value="{{ $item->id }}" class="hidden">
+                                                        <button type="submit" class="edit-btn text-blue-600 hover:text-blue-900">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                    </form>
 
-                                                <form action="{{ route('annonce.SoftDelete') }}" method="POST">
-                                                    @csrf   
-                                                    @method('delete')
-                                                    <input type="text" name="id" value="{{ $item->id }}" class="hidden">
-                                                    <button type="submit" class="soft-delete-btn text-red-600 hover:text-red-900">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
+                                                    <form action="{{ route('annonce.SoftDelete') }}" method="POST">
+                                                        @csrf   
+                                                        @method('delete')
+                                                        <input type="text" name="id" value="{{ $item->id }}" class="hidden">
+                                                        @if (!$item->soft_delete)
+                                                            <button type="submit" class="soft-delete-btn text-red-600 hover:text-red-900">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </button>
+                                                        @else
+                                                            <button type="submit" class="soft-delete-btn text-green-600 hover:text-green-900">
+                                                                <i class="fas fa-refresh"></i>
+                                                            </button>
+                                                        @endif
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        @else
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $colour[$item->status] }}">
+                                                {{ $item->status }}
+                                            </span>
+                                        @endif
                                     </tr>
                                         
                                 @endforeach
