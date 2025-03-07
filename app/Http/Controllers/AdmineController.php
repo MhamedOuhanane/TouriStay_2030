@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admine;
+use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdmineController extends Controller
@@ -12,7 +14,10 @@ class AdmineController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $reservations = Reservation::all();
+        $Users = User::distinct()->get();
+
+        return view('admin.dashboard', compact(''));
     }
 
     /**
