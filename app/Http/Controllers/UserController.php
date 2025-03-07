@@ -12,7 +12,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::distinct()->get();
+        return view('admin.utilisateurs.index', compact('users'));
     }
 
     /**

@@ -12,6 +12,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\TouristeController;
+use App\Http\Controllers\UserController;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,7 @@ Route::middleware('auth', 'role:admine', 'redirect:admine')->group(function () {
     Route::get('/dashboard.admine', [AdmineController::class, 'index'])->name('admine.dashboard');
 
     Route::get('/admin.reservation', [ReservationController::class, 'index'])->name('reservations.admin');
+    Route::get('/admin.utilisateur', [UserController::class, 'index'])->name('utilisateurs.admin');
 });
 
 
