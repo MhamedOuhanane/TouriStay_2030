@@ -23,7 +23,12 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = Reservation::with(['touriste', 'annonce'])->get();
-        return view('proprietaire.reservation.index', compact('reservations'));
+
+        if (session('role') == 'admine') {
+            return view('admin.reservation.index', compact('reservations'));
+        } else {
+            return view('proprietaire.reservation.index', compact('reservations'));
+        }
     }
 
     /**

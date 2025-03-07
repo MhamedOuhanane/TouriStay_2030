@@ -6,21 +6,21 @@
     </div>
     <nav class="mt-6">
         <div class="px-4">
-            <div class="bg-emerald-800 rounded-lg p-3 mb-3">
-                <a href="{{ route('admine.dashboard') }}" class="flex items-center">
+            <div class="rounded-lg p-3 mb-3">
+                <a href="{{ route('admine.dashboard') }}" class="flex items-center {{ request()->routeIs('admine.dashboard') ? 'bg-emerald-800' : 'hover:bg-emerald-800'}}">
                     <i class="fas fa-chart-pie mr-3"></i>
                     <span>Tableau de bord</span>
                 </a>
             </div>
-            <a href="" class="flex items-center p-3 hover:bg-blue-800 rounded-lg mb-3">
+            <a href="" class="flex items-center p-3 {{ request()->routeIs('reservations.admin') ? 'bg-emerald-800' : 'hover:bg-emerald-800'}} rounded-lg mb-3">
                 <i class="fas fa-hotel mr-3"></i>
                 <span>Hébergements</span>
             </a>
-            <a href="" class="flex items-center p-3 hover:bg-blue-800 rounded-lg mb-3">
+            <a href="" class="flex items-center p-3 {{ request()->routeIs('reservations.admin') ? 'bg-emerald-800' : 'hover:bg-emerald-800'}} rounded-lg mb-3">
                 <i class="fas fa-users mr-3"></i>
                 <span>Utilisateurs</span>
             </a>
-            <a href="" class="flex items-center p-3 hover:bg-blue-800 rounded-lg mb-3">
+            <a href="{{ route('reservations.admin') }}" class="flex {{ request()->routeIs('reservations.admin') ? 'bg-emerald-800' : 'hover:bg-emerald-800'  }} items-center p-3 hover:bg-blue-800 rounded-lg mb-3">
                 <i class="fas fa-calendar-check mr-3"></i>
                 <span>Réservations</span>
             </a>
