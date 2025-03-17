@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Annonce;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class AnnonceSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Annonce::factory(50)->create();
     }
 }
